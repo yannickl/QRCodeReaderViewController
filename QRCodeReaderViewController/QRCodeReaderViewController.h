@@ -31,7 +31,7 @@
 /**
  * The `QRCodeReaderViewController` is a simple QRCode Reader/Scanner based on
  * the `AVFoundation` framework from Apple. It aims to replace ZXing or ZBar
- * for iOS 7 or over.
+ * for iOS 7 and over.
  */
 @interface QRCodeReaderViewController : UIViewController
 
