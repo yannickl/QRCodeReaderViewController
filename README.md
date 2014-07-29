@@ -42,6 +42,7 @@ $ open MyProject.xcworkspace
 
 ## Usage
 
+```objective-c
 - (IBAction)scanAction:(id)sender
 {
   QRCodeReaderViewController *reader = [QRCodeReaderViewController new];
