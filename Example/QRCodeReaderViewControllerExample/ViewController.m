@@ -44,6 +44,10 @@
     });
     reader.delegate = self;
     
+    [reader setCompletionWithBlock:^(NSString *resultAsString) {
+        NSLog(@"Completion with result: %@", resultAsString);
+    }];
+    
     [self presentViewController:reader animated:YES completion:NULL];
 }
 

@@ -36,6 +36,8 @@
 @property (strong, nonatomic) AVCaptureSession           *session;
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *previewLayer;
 
+@property (copy, nonatomic) void (^completionBlock) (NSString *);
+
 @end
 
 @implementation QRCodeReaderViewController
@@ -109,6 +111,13 @@
     }
 }
 
+#pragma mark - Managing the Block
+
+- (void)setCompletionWithBlock:(void (^) (NSString *resultAsString))completionBlock
+{
+    self.completionBlock = completionBlock;
+}
+
 #pragma mark - Initializing the AV Components
 
 - (void)setupUIComponentsWithCancelButtonTitle:(NSString *)cancelButtonTitle
@@ -170,6 +179,10 @@
 {
     [self stopScanning];
     
+    if (_completionBlock) {
+        _completionBlock(nil);
+    }
+    
     if (_delegate && [_delegate respondsToSelector:@selector(readerDidCancel:)]) {
         [_delegate readerDidCancel:self];
     }
@@ -199,6 +212,10 @@
         if ([current isKindOfClass:[AVMetadataMachineReadableCodeObject class]]
             && [current.type isEqualToString:AVMetadataObjectTypeQRCode]) {
             NSString *scannedResult = [(AVMetadataMachineReadableCodeObject *) current stringValue];
+            
+            if (_completionBlock) {
+                _completionBlock(scannedResult);
+            }
             
             if (_delegate && [_delegate respondsToSelector:@selector(reader:didScanResult:)]) {
                 [_delegate reader:self didScanResult:scannedResult];

@@ -74,4 +74,17 @@
  */
 + (BOOL)isAvailable;
 
+#pragma mark - Managing the Block
+/** @name Managing the Block */
+
+/**
+ * @abstract Sets the completion with a block that executes when a QRCode or when the user did
+ * stopped the scan.
+ * @param completionBlock The block to be executed. This block has no return value and takes
+ * one argument: the `resultAsString`. If the user stop the scan and that there is no response
+ * the `resultAsString` argument is nil.
+ * @since 1.0.1
+ */
+- (void)setCompletionWithBlock:(void (^) (NSString *resultAsString))completionBlock;
+
 @end
