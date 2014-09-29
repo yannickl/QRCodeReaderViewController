@@ -47,7 +47,16 @@ $ open MyProject.xcworkspace
 {
   QRCodeReaderViewController *reader = [QRCodeReaderViewController new];
   reader.modalPresentationStyle      = UIModalPresentationFormSheet;
+  
+  // Using delegate methods
   reader.delegate                    = self;
+  
+  // Or by using blocks
+  [reader setCompletionWithBlock:^(NSString *resultAsString) {
+    [self dismissViewControllerAnimated:YES completion:^{
+      NSLog(@"%@", result);
+    }];
+  }];
 
   [self presentViewController:reader animated:YES completion:NULL];
 }
