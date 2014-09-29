@@ -2,6 +2,8 @@
 
 The _QRCodeReaderViewController_ is a simple QRCode Reader/Scanner based on the _AVFoundation_ framework from Apple. It aims to replace ZXing or ZBar for iOS 7 and over.
 
+![screenshot](https://github.com/YannickL/QRCodeReaderViewController/blob/master/Example/resources/QRCodeReader.gif)
+
 ### Installation
 
 The recommended approach to use _QRCodeReaderViewController_ in your project is using the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation.
