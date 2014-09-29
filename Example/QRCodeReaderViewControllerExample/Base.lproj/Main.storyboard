@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -29,10 +28,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="kct-zV-dJD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="205" id="I50-8J-dHa"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kct-zV-dJD" secondAttribute="bottom" constant="225" id="NVt-LK-kvb"/>
                             <constraint firstAttribute="trailing" secondItem="kct-zV-dJD" secondAttribute="trailing" constant="222" id="Pgy-im-572"/>
-                            <constraint firstItem="kct-zV-dJD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="205" id="QWf-kG-suR"/>
                             <constraint firstItem="kct-zV-dJD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="223" id="n2N-lr-uy8"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kct-zV-dJD" secondAttribute="bottom" constant="225" id="skT-lI-NFG"/>
                         </constraints>
                     </view>
                 </viewController>
