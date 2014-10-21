@@ -22,6 +22,7 @@ Go to the directory of your Xcode project, and Create and Edit your Podfile and 
 $ cd /path/to/MyProject
 $ touch Podfile
 $ edit Podfile
+source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
 pod 'QRCodeReaderViewController', '~> 1.0.0'
 ```
