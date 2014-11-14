@@ -16,6 +16,7 @@
 		CE2960421987F140008FA93B /* QRCodeReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2960411987F140008FA93B /* QRCodeReaderViewController.m */; };
 		CE2960431987F140008FA93B /* QRCodeReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2960411987F140008FA93B /* QRCodeReaderViewController.m */; };
 		CEAF7A661A16A31600991CF8 /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7A651A16A31600991CF8 /* QRCodeReaderView.m */; };
+		CEAF7A691A16B05400991CF8 /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7A681A16B05400991CF8 /* QRCameraSwitchButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		CE2960411987F140008FA93B /* QRCodeReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderViewController.m; sourceTree = "<group>"; };
 		CEAF7A641A16A31600991CF8 /* QRCodeReaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderView.h; sourceTree = "<group>"; };
 		CEAF7A651A16A31600991CF8 /* QRCodeReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderView.m; sourceTree = "<group>"; };
+		CEAF7A671A16B05400991CF8 /* QRCameraSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCameraSwitchButton.h; sourceTree = "<group>"; };
+		CEAF7A681A16B05400991CF8 /* QRCameraSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCameraSwitchButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,8 @@
 				CE2960411987F140008FA93B /* QRCodeReaderViewController.m */,
 				CEAF7A641A16A31600991CF8 /* QRCodeReaderView.h */,
 				CEAF7A651A16A31600991CF8 /* QRCodeReaderView.m */,
+				CEAF7A671A16B05400991CF8 /* QRCameraSwitchButton.h */,
+				CEAF7A681A16B05400991CF8 /* QRCameraSwitchButton.m */,
 			);
 			name = QRCodeReaderViewController;
 			path = ../QRCodeReaderViewController;
@@ -238,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE2960241987F124008FA93B /* ViewController.m in Sources */,
+				CEAF7A691A16B05400991CF8 /* QRCameraSwitchButton.m in Sources */,
 				CE2960211987F124008FA93B /* AppDelegate.m in Sources */,
 				CEAF7A661A16A31600991CF8 /* QRCodeReaderView.m in Sources */,
 				CE29601E1987F124008FA93B /* main.m in Sources */,

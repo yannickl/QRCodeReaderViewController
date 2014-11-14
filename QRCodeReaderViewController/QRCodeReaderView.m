@@ -33,7 +33,8 @@
 
 @implementation QRCodeReaderView
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
   if ((self = [super initWithFrame:frame])) {
     [self addOverlay];
   }
@@ -41,7 +42,8 @@
   return self;
 }
 
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect
+{
   CGRect innerRect = CGRectInset(rect, 50, 50);
   
   CGFloat minSize = MIN(innerRect.size.width, innerRect.size.height);
@@ -62,7 +64,8 @@
 
 #pragma mark - Private Methods
 
-- (void)addOverlay {
+- (void)addOverlay
+{
   _overlay = [[CAShapeLayer alloc] init];
   _overlay.backgroundColor = [UIColor clearColor].CGColor;
   _overlay.fillColor       = [UIColor clearColor].CGColor;
