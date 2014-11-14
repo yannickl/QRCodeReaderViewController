@@ -31,8 +31,10 @@
 @property (strong, nonatomic) QRCodeReaderView *cameraView;
 @property (strong, nonatomic) UIButton         *cancelButton;
 
-@property (strong, nonatomic) AVCaptureDevice            *device;
-@property (strong, nonatomic) AVCaptureDeviceInput       *deviceInput;
+@property (strong, nonatomic) AVCaptureDevice            *defaultDevice;
+@property (strong, nonatomic) AVCaptureDeviceInput       *defaultDeviceInput;
+@property (strong, nonatomic) AVCaptureDevice            *frontDevice;
+@property (strong, nonatomic) AVCaptureDeviceInput       *frontDeviceInput;
 @property (strong, nonatomic) AVCaptureMetadataOutput    *metadataOutput;
 @property (strong, nonatomic) AVCaptureSession           *session;
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *previewLayer;
@@ -54,9 +56,9 @@
     self.view.backgroundColor = [UIColor blackColor];
     
     [self setupAVComponents];
+    [self configureDefaultComponents];
     [self setupUIComponentsWithCancelButtonTitle:cancelTitle];
     [self setupAutoLayoutConstraints];
-    [self configureComponents];
     
     [_cameraView.layer insertSublayer:self.previewLayer atIndex:0];
   }
@@ -152,27 +154,58 @@
 
 - (void)setupAVComponents
 {
-  self.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+  self.defaultDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
   
-  if (_device) {
-    self.deviceInput    = [AVCaptureDeviceInput deviceInputWithDevice:self.device error:nil];
-    self.metadataOutput = [[AVCaptureMetadataOutput alloc] init];
-    self.session        = [[AVCaptureSession alloc] init];
-    self.previewLayer   = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
+  if (_defaultDevice) {
+    self.defaultDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:_defaultDevice error:nil];
+    self.metadataOutput     = [[AVCaptureMetadataOutput alloc] init];
+    self.session            = [[AVCaptureSession alloc] init];
+    self.previewLayer       = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
+    
+    for (AVCaptureDevice *device in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
+      if (device.position == AVCaptureDevicePositionFront) {
+        self.frontDevice = device;
+      }
+    }
+    
+    if (_frontDevice) {
+      self.frontDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:_frontDevice error:nil];
+    }
   }
 }
 
-- (void)configureComponents
+- (void)configureDefaultComponents
 {
-  [_session addOutput:self.metadataOutput];
-  [_session addInput:self.deviceInput];
+  [_session addOutput:_metadataOutput];
+  
+  if (_defaultDeviceInput) {
+    [_session addInput:_defaultDeviceInput];
+  }
+  
   [_metadataOutput setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
-  [_metadataOutput setMetadataObjectTypes:@[ AVMetadataObjectTypeQRCode ]];
+  if ([[_metadataOutput availableMetadataObjectTypes] containsObject:AVMetadataObjectTypeQRCode]) {
+    [_metadataOutput setMetadataObjectTypes:@[ AVMetadataObjectTypeQRCode ]];
+  }
   [_previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
   [_previewLayer setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
   
   if ([_previewLayer.connection isVideoOrientationSupported]) {
     _previewLayer.connection.videoOrientation = [[self class] videoOrientationFromInterfaceOrientation:self.interfaceOrientation];
+  }
+}
+
+- (void)switchDeviceInput
+{
+  if (_frontDeviceInput) {
+    [_session beginConfiguration];
+    
+    AVCaptureDeviceInput *currentInput = [_session.inputs firstObject];
+    [_session removeInput:currentInput];
+    
+    AVCaptureDeviceInput *newDeviceInput = (currentInput.device.position == AVCaptureDevicePositionFront) ? _defaultDeviceInput : _frontDeviceInput;
+    [_session addInput:newDeviceInput];
+    
+    [_session commitConfiguration];
   }
 }
 
