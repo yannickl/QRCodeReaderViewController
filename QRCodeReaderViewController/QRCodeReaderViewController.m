@@ -25,11 +25,13 @@
  */
 
 #import "QRCodeReaderViewController.h"
+#import "QRCameraSwitchButton.h"
 #import "QRCodeReaderView.h"
 
 @interface QRCodeReaderViewController () <AVCaptureMetadataOutputObjectsDelegate>
-@property (strong, nonatomic) QRCodeReaderView *cameraView;
-@property (strong, nonatomic) UIButton         *cancelButton;
+@property (strong, nonatomic) QRCameraSwitchButton *switchCameraButton;
+@property (strong, nonatomic) QRCodeReaderView     *cameraView;
+@property (strong, nonatomic) UIButton             *cancelButton;
 
 @property (strong, nonatomic) AVCaptureDevice            *defaultDevice;
 @property (strong, nonatomic) AVCaptureDeviceInput       *defaultDeviceInput;
@@ -84,6 +86,13 @@
   [super viewWillDisappear:animated];
 }
 
+- (void)viewWillLayoutSubviews
+{
+  [super viewWillLayoutSubviews];
+  
+  _previewLayer.frame = self.view.bounds;
+}
+
 - (BOOL)shouldAutorotate
 {
   return YES;
@@ -131,6 +140,13 @@
   _cameraView.translatesAutoresizingMaskIntoConstraints = NO;
   _cameraView.clipsToBounds                             = YES;
   [self.view addSubview:_cameraView];
+  
+  if (_frontDevice) {
+    _switchCameraButton = [[QRCameraSwitchButton alloc] init];
+    [_switchCameraButton setTranslatesAutoresizingMaskIntoConstraints:false];
+    [_switchCameraButton addTarget:self action:@selector(switchCameraAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_switchCameraButton];
+  }
   
   self.cancelButton                                       = [[UIButton alloc] init];
   _cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -222,6 +238,11 @@
   if (_delegate && [_delegate respondsToSelector:@selector(readerDidCancel:)]) {
     [_delegate readerDidCancel:self];
   }
+}
+
+- (void)switchCameraAction:(UIButton *)button
+{
+  [self switchDeviceInput];
 }
 
 #pragma mark - Controlling Reader
