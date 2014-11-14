@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,6 +19,10 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kct-zV-dJD">
                                 <rect key="frame" x="223" y="225" width="155" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="155" id="4hI-l3-fwn"/>
+                                    <constraint firstAttribute="height" constant="150" id="qAa-36-Hfs"/>
+                                </constraints>
                                 <state key="normal" title="Scan">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -28,10 +33,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="kct-zV-dJD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="205" id="I50-8J-dHa"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kct-zV-dJD" secondAttribute="bottom" constant="225" id="NVt-LK-kvb"/>
-                            <constraint firstAttribute="trailing" secondItem="kct-zV-dJD" secondAttribute="trailing" constant="222" id="Pgy-im-572"/>
-                            <constraint firstItem="kct-zV-dJD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="223" id="n2N-lr-uy8"/>
+                            <constraint firstAttribute="centerY" secondItem="kct-zV-dJD" secondAttribute="centerY" id="9JB-hP-LAl"/>
+                            <constraint firstAttribute="centerX" secondItem="kct-zV-dJD" secondAttribute="centerX" constant="-0.5" id="Dyx-T7-WFJ"/>
                         </constraints>
                     </view>
                 </viewController>
