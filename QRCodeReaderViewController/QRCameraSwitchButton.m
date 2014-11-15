@@ -28,6 +28,17 @@
 
 @implementation QRCameraSwitchButton
 
+- (id)initWithFrame:(CGRect)frame
+{
+  if ((self = [super initWithFrame:frame])) {
+    _edgeColor            = [UIColor whiteColor];
+    _fillColor            = [UIColor darkGrayColor];
+    _edgeHighlightedColor = [UIColor whiteColor];
+    _fillHighlightedColor = [UIColor blackColor];
+  }
+  return self;
+}
+
 - (void)drawRect:(CGRect)rect
 {
   CGFloat width  = rect.size.width;
