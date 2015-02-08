@@ -52,9 +52,21 @@
  * @abstract Initializes a view controller to read QRCodes from a displayed 
  * video preview and a cancel button to be go back.
  * @param cancelTitle The title of the cancel button.
+ * @discussion This convenient method is used to instanciate a reader with
+ * only one supported metadata object types: the QRCode.
+ * @see initWithCancelButtonTitle:metadataObjectTypes:
  * @since 1.0.0
  */
 - (id)initWithCancelButtonTitle:(NSString *)cancelTitle;
+
+/**
+ * @abstract Initializes a view controller to read wanter metadata object 
+ * types from a displayed video preview and a cancel button to be go back.
+ * @param cancelTitle The title of the cancel button.
+ * @param metadataObjectTypes The type (“symbology”) of barcode to scan.
+ * @since 2.0.0
+ */
+- (id)initWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes;
 
 /**
  * @abstract Creates a view controller to read QRCodes from a displayed
@@ -65,14 +77,32 @@
  */
 + (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle;
 
+/**
+ * @abstract Creates a view controller to read wanter metadata object types
+ * from a displayed video preview and a cancel button to be go back.
+ * @param cancelTitle The title of the cancel button.
+ * @param metadataObjectTypes The type (“symbology”) of barcode to scan.
+ * @since 2.0.0
+ */
++ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes;
+
 #pragma mark - Checking the Metadata Items Types
 /** @name Checking the Metadata Items Types */
 
 /**
  * @abstract Returns whether you can scan a QRCode with the current device.
- * @return a Boolean value indicating whether you can scan a QRCode with the current device.
+ * @return a Boolean value indicating whether you can scan a QRCode with the
+ * current device.
+ * @since 1.0.0
  */
 + (BOOL)isAvailable;
+
+/**
+ * @abstract An array of strings identifying the types of metadata objects to
+ * process.
+ * @since 2.0.0
+ */
+@property (strong, nonatomic, readonly) NSArray *metadataObjectTypes;
 
 #pragma mark - Managing the Block
 /** @name Managing the Block */

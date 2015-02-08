@@ -33,6 +33,7 @@
 @property (strong, nonatomic) QRCodeReaderView     *cameraView;
 @property (strong, nonatomic) UIButton             *cancelButton;
 
+@property (strong, nonatomic) NSArray                    *metadataObjectTypes;
 @property (strong, nonatomic) AVCaptureDevice            *defaultDevice;
 @property (strong, nonatomic) AVCaptureDeviceInput       *defaultDeviceInput;
 @property (strong, nonatomic) AVCaptureDevice            *frontDevice;
@@ -54,8 +55,14 @@
 
 - (id)initWithCancelButtonTitle:(NSString *)cancelTitle
 {
+  return [self initWithCancelButtonTitle:cancelTitle metadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+}
+
+- (id)initWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes
+{
   if ((self = [super init])) {
     self.view.backgroundColor = [UIColor blackColor];
+    self.metadataObjectTypes  = metadataObjectTypes;
     
     [self setupAVComponents];
     [self configureDefaultComponents];
@@ -70,6 +77,11 @@
 + (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle
 {
   return [[self alloc] initWithCancelButtonTitle:cancelTitle];
+}
+
++ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes
+{
+  return [[self alloc] initWithCancelButtonTitle:cancelTitle metadataObjectTypes:metadataObjectTypes];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -208,9 +220,7 @@
   }
   
   [_metadataOutput setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
-  if ([[_metadataOutput availableMetadataObjectTypes] containsObject:AVMetadataObjectTypeQRCode]) {
-    [_metadataOutput setMetadataObjectTypes:@[ AVMetadataObjectTypeQRCode ]];
-  }
+  [_metadataOutput setMetadataObjectTypes:_metadataObjectTypes];
   [_previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
   [_previewLayer setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
   
@@ -276,7 +286,7 @@
 {
   for(AVMetadataObject *current in metadataObjects) {
     if ([current isKindOfClass:[AVMetadataMachineReadableCodeObject class]]
-        && [current.type isEqualToString:AVMetadataObjectTypeQRCode]) {
+        && [_metadataObjectTypes containsObject:current.type]) {
       NSString *scannedResult = [(AVMetadataMachineReadableCodeObject *) current stringValue];
       
       if (_completionBlock) {
