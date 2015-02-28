@@ -1,8 +1,8 @@
 ![QRCodeReaderViewController](https://github.com/YannickL/QRCodeReaderViewController/blob/master/web/qrcodereaderviewcontroller_header.png)
 
-The _QRCodeReaderViewController_ is a simple QRCode and bar code reader/scanner based on the `AVFoundation` framework from Apple. It aims to replace ZXing or ZBar for iOS 7 and over.
+The _QRCodeReaderViewController_ was initialy a simple QRCode reader but it now lets you the possibility to specify the [format type](https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMetadataMachineReadableCodeObject_Class/index.html#//apple_ref/doc/constant_group/Machine_Readable_Object_Types) you want to decode. It is based on the `AVFoundation` framework from Apple in order to replace ZXing or ZBar for iOS 7 and over.
 
-It also allows you to switch between the front and the back cameras.
+It provides a default view controller to display the camera view with the scan area overlay and it also provides a button to switch between the front and the back cameras.
 
 ![screenshot](https://github.com/YannickL/QRCodeReaderViewController/blob/master/web/screenshot.jpg)
 
@@ -50,20 +50,23 @@ $ open MyProject.xcworkspace
 ```objective-c
 - (IBAction)scanAction:(id)sender
 {
-  QRCodeReaderViewController *reader = [QRCodeReaderViewController new];
-  reader.modalPresentationStyle      = UIModalPresentationFormSheet;
+  NSArray *types = @[AVMetadataObjectTypeQRCode];
+  _reader        = [QRCodeReaderViewController readerWithMetadataObjectTypes:types];
+  
+  // Set the presentation style
+  _reader.modalPresentationStyle = UIModalPresentationFormSheet;
   
   // Using delegate methods
-  reader.delegate = self;
+  _reader.delegate = self;
   
   // Or by using blocks
-  [reader setCompletionWithBlock:^(NSString *resultAsString) {
+  [_reader setCompletionWithBlock:^(NSString *resultAsString) {
     [self dismissViewControllerAnimated:YES completion:^{
       NSLog(@"%@", result);
     }];
   }];
-
-  [self presentViewController:reader animated:YES completion:NULL];
+  
+  [self presentViewController:_reader animated:YES completion:NULL];
 }
 
 #pragma mark - QRCodeReader Delegate Methods
