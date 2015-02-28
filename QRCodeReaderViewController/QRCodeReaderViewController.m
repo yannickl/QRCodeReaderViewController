@@ -33,7 +33,7 @@
 @property (strong, nonatomic) QRCameraSwitchButton *switchCameraButton;
 @property (strong, nonatomic) QRCodeReaderView     *cameraView;
 @property (strong, nonatomic) UIButton             *cancelButton;
-@property (strong, nonatomic) QRCodeReader         *qrCodeReader;
+@property (strong, nonatomic) QRCodeReader         *codeReader;
 
 @property (copy, nonatomic) void (^completionBlock) (NSString *);
 
@@ -41,9 +41,14 @@
 
 @implementation QRCodeReaderViewController
 
+- (void)dealloc
+{
+  [_codeReader stopScanning];
+}
+
 - (id)init
 {
-  return [self initWithCancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+  return [self initWithCancelButtonTitle:nil];
 }
 
 - (id)initWithCancelButtonTitle:(NSString *)cancelTitle
@@ -51,17 +56,33 @@
   return [self initWithCancelButtonTitle:cancelTitle metadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
 }
 
+- (id)initWithMetadataObjectTypes:(NSArray *)metadataObjectTypes
+{
+  return [self initWithCancelButtonTitle:nil metadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+}
+
 - (id)initWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes
+{
+  QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:metadataObjectTypes];
+  
+  return [self initWithCancelButtonTitle:cancelTitle codeReader:reader];
+}
+
+- (id)initWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader
 {
   if ((self = [super init])) {
     self.view.backgroundColor = [UIColor blackColor];
-    self.qrCodeReader         = [[QRCodeReader alloc] initWithMetadataObjectTypes:metadataObjectTypes];
+    self.codeReader           = codeReader;
+    
+    if (cancelTitle == nil) {
+      cancelTitle = NSLocalizedString(@"Cancel", @"Cancel");
+    }
     
     [self setupUIComponentsWithCancelButtonTitle:cancelTitle];
     [self setupAutoLayoutConstraints];
     
-    [_cameraView.layer insertSublayer:_qrCodeReader.previewLayer atIndex:0];
-
+    [_cameraView.layer insertSublayer:_codeReader.previewLayer atIndex:0];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
   }
   return self;
@@ -72,21 +93,31 @@
   return [[self alloc] initWithCancelButtonTitle:cancelTitle];
 }
 
++ (instancetype)readerWithMetadataObjectTypes:(NSArray *)metadataObjectTypes
+{
+  return [[self alloc] initWithMetadataObjectTypes:metadataObjectTypes];
+}
+
 + (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes
 {
   return [[self alloc] initWithCancelButtonTitle:cancelTitle metadataObjectTypes:metadataObjectTypes];
+}
+
++ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader
+{
+  return [[self alloc] initWithCancelButtonTitle:cancelTitle codeReader:codeReader];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
   
-  [_qrCodeReader startScanning];
+  [_codeReader startScanning];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-  [_qrCodeReader stopScanning];
+  [_codeReader stopScanning];
   
   [super viewWillDisappear:animated];
 }
@@ -95,7 +126,7 @@
 {
   [super viewWillLayoutSubviews];
   
-  _qrCodeReader.previewLayer.frame = self.view.bounds;
+  _codeReader.previewLayer.frame = self.view.bounds;
 }
 
 - (BOOL)shouldAutorotate
@@ -111,8 +142,8 @@
   
   [_cameraView setNeedsDisplay];
   
-  if (_qrCodeReader.previewLayer.connection.isVideoOrientationSupported) {
-    _qrCodeReader.previewLayer.connection.videoOrientation = [[self class] videoOrientationFromDeviceOrientation:device.orientation];
+  if (_codeReader.previewLayer.connection.isVideoOrientationSupported) {
+    _codeReader.previewLayer.connection.videoOrientation = [[self class] videoOrientationFromDeviceOrientation:device.orientation];
   }
 }
 
@@ -136,7 +167,7 @@
 {
   __weak typeof(self) weakSelf = self;
   
-  [_qrCodeReader setCompletionWithBlock:^(NSString *resultAsString) {
+  [_codeReader setCompletionWithBlock:^(NSString *resultAsString) {
     completionBlock(resultAsString);
     
     if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(reader:didScanResult:)]) {
@@ -156,15 +187,15 @@
   _cameraView.clipsToBounds                             = YES;
   [self.view addSubview:_cameraView];
   
-  [_qrCodeReader.previewLayer setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+  [_codeReader.previewLayer setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
   
-  if ([_qrCodeReader.previewLayer.connection isVideoOrientationSupported]) {
+  if ([_codeReader.previewLayer.connection isVideoOrientationSupported]) {
     UIDevice *currentDevice = [UIDevice currentDevice];
     
-    _qrCodeReader.previewLayer.connection.videoOrientation = [[self class] videoOrientationFromDeviceOrientation:currentDevice.orientation];
+    _codeReader.previewLayer.connection.videoOrientation = [[self class] videoOrientationFromDeviceOrientation:currentDevice.orientation];
   }
   
-  if ([_qrCodeReader hasFrontDevice]) {
+  if ([_codeReader hasFrontDevice]) {
     _switchCameraButton = [[QRCameraSwitchButton alloc] init];
     [_switchCameraButton setTranslatesAutoresizingMaskIntoConstraints:false];
     [_switchCameraButton addTarget:self action:@selector(switchCameraAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -202,14 +233,14 @@
 
 - (void)switchDeviceInput
 {
-  [_qrCodeReader switchDeviceInput];
+  [_codeReader switchDeviceInput];
 }
 
 #pragma mark - Catching Button Events
 
 - (void)cancelAction:(UIButton *)button
 {
-  [_qrCodeReader stopScanning];
+  [_codeReader stopScanning];
   
   if (_completionBlock) {
     _completionBlock(nil);

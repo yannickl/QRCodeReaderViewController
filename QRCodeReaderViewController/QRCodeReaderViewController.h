@@ -61,22 +61,63 @@
 + (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle;
 
 /**
- * @abstract Initializes a view controller to read wanter metadata object
+ * @abstract Initializes a reader view controller with a list of metadata 
+ * object types.
+ * @param metadataObjectTypes An array of strings identifying the types of
+ * metadata objects to process.
+ * @see initWithCancelButtonTitle:metadataObjectTypes:
+ * @since 3.0.0
+ */
+- (id)initWithMetadataObjectTypes:(NSArray *)metadataObjectTypes;
+
+/**
+ * @abstract Creates a reader view controller with a list of metadata object
+ * types.
+ * @param metadataObjectTypes An array of strings identifying the types of
+ * metadata objects to process.
+ * @see initWithMetadataObjectTypes:
+ * @since 3.0.0
+ */
++ (instancetype)readerWithMetadataObjectTypes:(NSArray *)metadataObjectTypes;
+
+/**
+ * @abstract Initializes a view controller to read wanted metadata object
  * types from a displayed video preview and a cancel button to be go back.
  * @param cancelTitle The title of the cancel button.
  * @param metadataObjectTypes The type (“symbology”) of barcode to scan.
+ * @see initWithCancelButtonTitle:codeReader:
  * @since 2.0.0
  */
 - (id)initWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes;
 
 /**
- * @abstract Creates a view controller to read wanter metadata object types
+ * @abstract Creates a view controller to read wanted metadata object types
  * from a displayed video preview and a cancel button to be go back.
  * @param cancelTitle The title of the cancel button.
  * @param metadataObjectTypes The type (“symbology”) of barcode to scan.
+ * @see initWithCancelButtonTitle:metadataObjectTypes:
  * @since 2.0.0
  */
 + (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes;
+
+/**
+ * @abstract Initializes a view controller using a cancel button title and
+ * a code reader.
+ * @param cancelTitle The title of the cancel button.
+ * @param codeReader The reader to decode the codes.
+ * @since 3.0.0
+ */
+- (id)initWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader;
+
+/**
+ * @abstract Initializes a view controller using a cancel button title and
+ * a code reader.
+ * @param cancelTitle The title of the cancel button.
+ * @param codeReader The reader to decode the codes.
+ * @see initWithCancelButtonTitle:codeReader:
+ * @since 3.0.0
+ */
++ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader;
 
 #pragma mark - Managing the Delegate
 /** @name Managing the Delegate */
@@ -103,9 +144,9 @@
 /** @name Managing the Reader */
 
 /**
- * @abstract The default QR code reader created with the controller.
- * @since 2.0.0
+ * @abstract The default code reader created with the controller.
+ * @since 3.0.0
  */
-@property (strong, nonatomic, readonly) QRCodeReader *qrCodeReader;
+@property (strong, nonatomic, readonly) QRCodeReader *codeReader;
 
 @end
