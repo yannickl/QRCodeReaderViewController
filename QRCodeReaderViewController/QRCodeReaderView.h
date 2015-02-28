@@ -27,7 +27,8 @@
 #import <UIKit/UIKit.h>
 
 /**
- * Simple view to display an overlay (a square) over the camera view.
+ * Overlay over the camera view to display the area (a square) where to scan the
+ * code.
  * @since 2.0.0
  */
 @interface QRCodeReaderView : UIView

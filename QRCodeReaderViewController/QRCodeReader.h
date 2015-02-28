@@ -31,7 +31,6 @@
  * Reader object base on the `AVCaptureDevice` to read / scan 1D and 2D codes.
  */
 @interface QRCodeReader : NSObject
-@property (strong, nonatomic, readonly) AVCaptureVideoPreviewLayer *previewLayer;
 
 #pragma mark - Creating and Inializing QRCode Readers
 /** @name Creating and Inializing QRCode Readers */
@@ -71,12 +70,42 @@
  */
 @property (strong, nonatomic, readonly) NSArray *metadataObjectTypes;
 
+#pragma mark - Viewing the Camera
+/** @name Viewing the Camera */
+
+/**
+ * @abstract CALayer that you use to display video as it is being captured
+ * by an input device.
+ * @since 3.0.0
+ */
+@property (strong, nonatomic, readonly) AVCaptureVideoPreviewLayer *previewLayer;
+
 #pragma mark - Controlling the Reader
 /** @name Controlling the Reader */
 
+/**
+ * @abstract Starts scanning the codes.
+ * @since 3.0.0
+ */
 - (void)startScanning;
+
+/**
+ * @abstract Stops scanning the codes.
+ * @since 3.0.0
+ */
 - (void)stopScanning;
+
+/**
+ * @abstract Switch between the back and the front camera.
+ * @since 3.0.0
+ */
 - (void)switchDeviceInput;
+
+/**
+ * @abstract Returns true whether a front device is available.
+ * @return true whether a front device is available.
+ * @since 3.0.0
+ */
 - (BOOL)hasFrontDevice;
 
 #pragma mark - Managing the Block
