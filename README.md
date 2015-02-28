@@ -1,6 +1,6 @@
 ![QRCodeReaderViewController](https://github.com/YannickL/QRCodeReaderViewController/blob/master/web/qrcodereaderviewcontroller_header.png)
 
-The _QRCodeReaderViewController_ is a simple QRCode Reader/Scanner based on the _AVFoundation_ framework from Apple. It aims to replace ZXing or ZBar for iOS 7 and over.
+The _QRCodeReaderViewController_ is a simple QRCode and bar code reader/scanner based on the `AVFoundation` framework from Apple. It aims to replace ZXing or ZBar for iOS 7 and over.
 
 It also allows you to switch between the front and the back cameras.
 
@@ -26,7 +26,7 @@ $ touch Podfile
 $ edit Podfile
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
-pod 'QRCodeReaderViewController', '~> 2.0.0'
+pod 'QRCodeReaderViewController', '~> 3.0.0'
 ```
 
 Install into your project:
@@ -54,7 +54,7 @@ $ open MyProject.xcworkspace
   reader.modalPresentationStyle      = UIModalPresentationFormSheet;
   
   // Using delegate methods
-  reader.delegate                    = self;
+  reader.delegate = self;
   
   // Or by using blocks
   [reader setCompletionWithBlock:^(NSString *resultAsString) {
