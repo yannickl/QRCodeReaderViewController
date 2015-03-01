@@ -26,6 +26,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * Reader object base on the `AVCaptureDevice` to read / scan 1D and 2D codes.
@@ -107,6 +108,19 @@
  * @since 3.0.0
  */
 - (BOOL)hasFrontDevice;
+
+#pragma mark - Managing the Orientation
+/** @name Managing the Orientation */
+
+/**
+ * @abstract Returns the video orientation correspongind to the given device
+ * orientation.
+ * @param deviceOrientation A device orientation.
+ * @return the video orientation correspongind to the given device orientation.
+ * @since 3.1.0
+ */
++ (AVCaptureVideoOrientation)videoOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation;
+
 
 #pragma mark - Managing the Block
 /** @name Managing the Block */

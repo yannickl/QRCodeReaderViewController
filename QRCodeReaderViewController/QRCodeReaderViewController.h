@@ -25,10 +25,8 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
 #import "QRCodeReaderDelegate.h"
-
-@class QRCodeReader;
+#import "QRCodeReader.h"
 
 /**
  * Convenient controller to display a view to scan/read 1D or 2D bar codes like

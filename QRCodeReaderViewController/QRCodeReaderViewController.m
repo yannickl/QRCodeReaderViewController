@@ -27,7 +27,6 @@
 #import "QRCodeReaderViewController.h"
 #import "QRCameraSwitchButton.h"
 #import "QRCodeReaderView.h"
-#import "QRCodeReader.h"
 
 @interface QRCodeReaderViewController ()
 @property (strong, nonatomic) QRCameraSwitchButton *switchCameraButton;
@@ -44,6 +43,8 @@
 - (void)dealloc
 {
   [_codeReader stopScanning];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (id)init
@@ -143,21 +144,7 @@
   [_cameraView setNeedsDisplay];
   
   if (_codeReader.previewLayer.connection.isVideoOrientationSupported) {
-    _codeReader.previewLayer.connection.videoOrientation = [[self class] videoOrientationFromDeviceOrientation:device.orientation];
-  }
-}
-
-+ (AVCaptureVideoOrientation)videoOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation
-{
-  switch (deviceOrientation) {
-    case UIDeviceOrientationLandscapeLeft:
-      return AVCaptureVideoOrientationLandscapeRight;
-    case UIDeviceOrientationLandscapeRight:
-      return AVCaptureVideoOrientationLandscapeLeft;
-    case UIDeviceOrientationPortrait:
-      return AVCaptureVideoOrientationPortrait;
-    default:
-      return AVCaptureVideoOrientationPortraitUpsideDown;
+    _codeReader.previewLayer.connection.videoOrientation = [QRCodeReader videoOrientationFromDeviceOrientation:device.orientation];
   }
 }
 
@@ -192,7 +179,7 @@
   if ([_codeReader.previewLayer.connection isVideoOrientationSupported]) {
     UIDevice *currentDevice = [UIDevice currentDevice];
     
-    _codeReader.previewLayer.connection.videoOrientation = [[self class] videoOrientationFromDeviceOrientation:currentDevice.orientation];
+    _codeReader.previewLayer.connection.videoOrientation = [QRCodeReader videoOrientationFromDeviceOrientation:currentDevice.orientation];
   }
   
   if ([_codeReader hasFrontDevice]) {

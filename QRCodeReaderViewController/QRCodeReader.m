@@ -130,6 +130,22 @@
   }
 }
 
+#pragma mark - Managing the Orientation
+
++ (AVCaptureVideoOrientation)videoOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation
+{
+  switch (deviceOrientation) {
+    case UIDeviceOrientationLandscapeLeft:
+      return AVCaptureVideoOrientationLandscapeRight;
+    case UIDeviceOrientationLandscapeRight:
+      return AVCaptureVideoOrientationLandscapeLeft;
+    case UIDeviceOrientationPortrait:
+      return AVCaptureVideoOrientationPortrait;
+    default:
+      return AVCaptureVideoOrientationPortraitUpsideDown;
+  }
+}
+
 #pragma mark - Checking the Metadata Items Types
 
 + (BOOL)isAvailable
