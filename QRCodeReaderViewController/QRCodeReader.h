@@ -53,16 +53,27 @@
  */
 + (instancetype)readerWithMetadataObjectTypes:(NSArray *)metadataObjectTypes;
 
-#pragma mark - Checking the Metadata Items Types
-/** @name Checking the Metadata Items Types */
+#pragma mark - Checking the Reader Availabilities
+/** @name Checking the Reader Availabilities */
 
 /**
- * @abstract Returns whether you can scan a QRCode with the current device.
- * @return a Boolean value indicating whether you can scan a QRCode with the
- * current device.
+ * @abstract Returns whether the reader is available with the current device.
+ * @return a Boolean value indicating whether the reader is available.
  * @since 3.0.0
  */
 + (BOOL)isAvailable;
+
+/**
+ * @abstract Checks and return whether the given metadata object types are
+ * supported by the current device.
+ * @return a Boolean value indicating whether the given metadata object types
+ * are supported by the current device.
+ * @since 3.2.0
+ */
++ (BOOL)supportsMetadataObjectTypes:(NSArray *)metadataObjectTypes;
+
+#pragma mark - Checking the Metadata Items Types
+/** @name Checking the Metadata Items Types */
 
 /**
  * @abstract An array of strings identifying the types of metadata objects to

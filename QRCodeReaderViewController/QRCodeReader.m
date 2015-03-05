@@ -146,7 +146,7 @@
   }
 }
 
-#pragma mark - Checking the Metadata Items Types
+#pragma mark - Checking the Reader Availabilities
 
 + (BOOL)isAvailable
 {
@@ -164,10 +164,35 @@
       return NO;
     }
     
-    AVCaptureMetadataOutput *output = [[AVCaptureMetadataOutput alloc] init];
+    return YES;
+  }
+}
+
++ (BOOL)supportsMetadataObjectTypes:(NSArray *)metadataObjectTypes
+{
+  if (![self isAvailable]) {
+    return NO;
+  }
+  
+  @autoreleasepool {
+    // Setup components
+    AVCaptureDevice *captureDevice    = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:nil];
+    AVCaptureMetadataOutput *output   = [[AVCaptureMetadataOutput alloc] init];
+    AVCaptureSession *session         = [[AVCaptureSession alloc] init];
     
-    if (![output.availableMetadataObjectTypes containsObject:AVMetadataObjectTypeQRCode]) {
-      return NO;
+    [session addInput:deviceInput];
+    [session addOutput:output];
+    
+    if (metadataObjectTypes == nil || metadataObjectTypes.count == 0) {
+      // Check the QRCode metadata object type by default
+      metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
+    }
+    
+    for (NSString *metadataObjectType in metadataObjectTypes) {
+      if (![output.availableMetadataObjectTypes containsObject:metadataObjectType]) {
+        return NO;
+      }
     }
     
     return YES;

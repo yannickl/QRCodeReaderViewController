@@ -26,6 +26,7 @@
 
 #import "ViewController.h"
 #import "QRCodeReaderViewController.h"
+#import "QRCodeReader.h"
 
 @interface ViewController ()
 
@@ -35,20 +36,27 @@
 
 - (IBAction)scanAction:(id)sender
 {
+  if ([QRCodeReader supportsMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]]) {
     static QRCodeReaderViewController *reader = nil;
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        reader                        = [QRCodeReaderViewController new];
-        reader.modalPresentationStyle = UIModalPresentationFormSheet;
+      reader                        = [QRCodeReaderViewController new];
+      reader.modalPresentationStyle = UIModalPresentationFormSheet;
     });
     reader.delegate = self;
     
     [reader setCompletionWithBlock:^(NSString *resultAsString) {
-        NSLog(@"Completion with result: %@", resultAsString);
+      NSLog(@"Completion with result: %@", resultAsString);
     }];
     
     [self presentViewController:reader animated:YES completion:NULL];
+  }
+  else {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Reader not supported by the current device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [alert show];
+  }
 }
 
 #pragma mark - QRCodeReader Delegate Methods
