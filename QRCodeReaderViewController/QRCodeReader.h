@@ -124,13 +124,13 @@
 /** @name Managing the Orientation */
 
 /**
- * @abstract Returns the video orientation correspongind to the given device
+ * @abstract Returns the video orientation correspongind to the given interface
  * orientation.
- * @param deviceOrientation A device orientation.
+ * @param interfaceOrientation An interface orientation.
  * @return the video orientation correspongind to the given device orientation.
  * @since 3.1.0
  */
-+ (AVCaptureVideoOrientation)videoOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation;
++ (AVCaptureVideoOrientation)videoOrientationFromInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 
 #pragma mark - Managing the Block

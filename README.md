@@ -4,7 +4,7 @@ The _QRCodeReaderViewController_ was initialy a simple QRCode reader but it now 
 
 It provides a default view controller to display the camera view with the scan area overlay and it also provides a button to switch between the front and the back cameras.
 
-![screenshot](https://github.com/YannickL/QRCodeReaderViewController/blob/master/web/screenshot.jpg)
+![screenshot](http://yannickloriot.com/resources/qrcodereader.swift-screenshot.jpg)
 
 ### Installation
 
@@ -26,7 +26,7 @@ $ touch Podfile
 $ edit Podfile
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
-pod 'QRCodeReaderViewController', '~> 3.2.1'
+pod 'QRCodeReaderViewController', '~> 3.2.2'
 ```
 
 Install into your project:

@@ -151,12 +151,13 @@
 
 - (void)orientationChanged:(NSNotification *)notification
 {
-  UIDevice *device = notification.object;
-  
   [_cameraView setNeedsDisplay];
   
   if (_codeReader.previewLayer.connection.isVideoOrientationSupported) {
-    _codeReader.previewLayer.connection.videoOrientation = [QRCodeReader videoOrientationFromDeviceOrientation:device.orientation];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    _codeReader.previewLayer.connection.videoOrientation = [QRCodeReader videoOrientationFromInterfaceOrientation:
+                                                            orientation];
   }
 }
 
@@ -179,9 +180,9 @@
   [_codeReader.previewLayer setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
   
   if ([_codeReader.previewLayer.connection isVideoOrientationSupported]) {
-    UIDevice *currentDevice = [UIDevice currentDevice];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
-    _codeReader.previewLayer.connection.videoOrientation = [QRCodeReader videoOrientationFromDeviceOrientation:currentDevice.orientation];
+    _codeReader.previewLayer.connection.videoOrientation = [QRCodeReader videoOrientationFromInterfaceOrientation:orientation];
   }
   
   if ([_codeReader hasFrontDevice]) {

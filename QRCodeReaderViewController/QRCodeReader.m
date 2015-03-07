@@ -132,14 +132,14 @@
 
 #pragma mark - Managing the Orientation
 
-+ (AVCaptureVideoOrientation)videoOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation
++ (AVCaptureVideoOrientation)videoOrientationFromInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-  switch (deviceOrientation) {
-    case UIDeviceOrientationLandscapeLeft:
-      return AVCaptureVideoOrientationLandscapeRight;
-    case UIDeviceOrientationLandscapeRight:
+  switch (interfaceOrientation) {
+    case UIInterfaceOrientationLandscapeLeft:
       return AVCaptureVideoOrientationLandscapeLeft;
-    case UIDeviceOrientationPortrait:
+    case UIInterfaceOrientationLandscapeRight:
+      return AVCaptureVideoOrientationLandscapeRight;
+    case UIInterfaceOrientationPortrait:
       return AVCaptureVideoOrientationPortrait;
     default:
       return AVCaptureVideoOrientationPortraitUpsideDown;
