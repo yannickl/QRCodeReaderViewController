@@ -130,6 +130,10 @@
   }
 }
 
+- (BOOL)running {
+  return self.session.running;
+}
+
 #pragma mark - Managing the Orientation
 
 + (AVCaptureVideoOrientation)videoOrientationFromInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

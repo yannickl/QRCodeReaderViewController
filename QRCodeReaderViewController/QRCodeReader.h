@@ -108,6 +108,16 @@
 - (void)stopScanning;
 
 /**
+ * @abstract Indicates whether the session is currently running.
+ * @discussion The value of this property is a Bool indicating whether the
+ * receiver is running.
+ * Clients can key value observe the value of this property to be notified
+ * when the session automatically starts or stops running.
+ * @since 3.3.0
+ */
+- (BOOL)running;
+
+/**
  * @abstract Switch between the back and the front camera.
  * @since 3.0.0
  */
