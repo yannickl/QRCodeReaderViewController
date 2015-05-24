@@ -103,6 +103,7 @@
  * a code reader.
  * @param cancelTitle The title of the cancel button.
  * @param codeReader The reader to decode the codes.
+ * @see initWithCancelButtonTitle:codeReader:startScanningAtLoad:
  * @since 3.0.0
  */
 - (id)initWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader;
@@ -116,6 +117,42 @@
  * @since 3.0.0
  */
 + (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader;
+
+/**
+ * @abstract Initializes a view controller using a cancel button title and
+ * a code reader.
+ * @param cancelTitle The title of the cancel button.
+ * @param codeReader The reader to decode the codes.
+ * @param startScanningAtLoad Flag to know whether the view controller start scanning the codes when the view will appear.
+ * @since 3.0.0
+ */
+- (id)initWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad;
+
+/**
+ * @abstract Initializes a view controller using a cancel button title and
+ * a code reader.
+ * @param cancelTitle The title of the cancel button.
+ * @param codeReader The reader to decode the codes.
+ * @param startScanningAtLoad Flag to know whether the view controller start scanning the codes when the view will appear.
+ * @see initWithCancelButtonTitle:codeReader:startScanningAtLoad:
+ * @since 3.0.0
+ */
++ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader  startScanningAtLoad:(BOOL)startScanningAtLoad;
+
+#pragma mark - Controlling the Reader
+/** @name Controlling the Reader */
+
+/**
+ * @abstract Starts scanning the codes.
+ * @since 3.0.0
+ */
+- (void)startScanning;
+
+/**
+ * @abstract Stops scanning the codes.
+ * @since 3.0.0
+ */
+- (void)stopScanning;
 
 #pragma mark - Managing the Delegate
 /** @name Managing the Delegate */

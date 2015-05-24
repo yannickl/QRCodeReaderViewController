@@ -33,6 +33,7 @@
 @property (strong, nonatomic) QRCodeReaderView     *cameraView;
 @property (strong, nonatomic) UIButton             *cancelButton;
 @property (strong, nonatomic) QRCodeReader         *codeReader;
+@property (assign, nonatomic) BOOL                 startScanningAtLoad;
 
 @property (copy, nonatomic) void (^completionBlock) (NSString *);
 
@@ -42,7 +43,7 @@
 
 - (void)dealloc
 {
-  [_codeReader stopScanning];
+  [self stopScanning];
 
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -71,9 +72,15 @@
 
 - (id)initWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader
 {
+  return [self initWithCancelButtonTitle:cancelTitle codeReader:codeReader startScanningAtLoad:true];
+}
+
+- (id)initWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad
+{
   if ((self = [super init])) {
     self.view.backgroundColor = [UIColor blackColor];
     self.codeReader           = codeReader;
+    self.startScanningAtLoad  = startScanningAtLoad;
 
     if (cancelTitle == nil) {
       cancelTitle = NSLocalizedString(@"Cancel", @"Cancel");
@@ -121,16 +128,23 @@
   return [[self alloc] initWithCancelButtonTitle:cancelTitle codeReader:codeReader];
 }
 
++ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader  startScanningAtLoad:(BOOL)startScanningAtLoad
+{
+  return [[self alloc] initWithCancelButtonTitle:cancelTitle codeReader:codeReader startScanningAtLoad:startScanningAtLoad];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
 
-  [_codeReader startScanning];
+  if (_startScanningAtLoad) {
+    [self startScanning];
+  }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-  [_codeReader stopScanning];
+  [self stopScanning];
 
   [super viewWillDisappear:animated];
 }
@@ -145,6 +159,16 @@
 - (BOOL)shouldAutorotate
 {
   return YES;
+}
+
+#pragma mark - Controlling the Reader
+
+- (void)startScanning {
+  [_codeReader startScanning];
+}
+
+- (void)stopScanning {
+  [_codeReader stopScanning];
 }
 
 #pragma mark - Managing the Orientation
