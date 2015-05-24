@@ -45,7 +45,7 @@
 {
   if ((self = [super init])) {
     _metadataObjectTypes = metadataObjectTypes;
-    
+
     [self setupAVComponents];
     [self configureDefaultComponents];
   }
@@ -62,19 +62,19 @@
 - (void)setupAVComponents
 {
   self.defaultDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-  
+
   if (_defaultDevice) {
     self.defaultDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:_defaultDevice error:nil];
     self.metadataOutput     = [[AVCaptureMetadataOutput alloc] init];
     self.session            = [[AVCaptureSession alloc] init];
     self.previewLayer       = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
-    
+
     for (AVCaptureDevice *device in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
       if (device.position == AVCaptureDevicePositionFront) {
         self.frontDevice = device;
       }
     }
-    
+
     if (_frontDevice) {
       self.frontDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:_frontDevice error:nil];
     }
@@ -84,11 +84,11 @@
 - (void)configureDefaultComponents
 {
   [_session addOutput:_metadataOutput];
-  
+
   if (_defaultDeviceInput) {
     [_session addInput:_defaultDeviceInput];
   }
-  
+
   [_metadataOutput setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
   [_metadataOutput setMetadataObjectTypes:_metadataObjectTypes];
   [_previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
@@ -98,13 +98,13 @@
 {
   if (_frontDeviceInput) {
     [_session beginConfiguration];
-    
+
     AVCaptureDeviceInput *currentInput = [_session.inputs firstObject];
     [_session removeInput:currentInput];
-    
+
     AVCaptureDeviceInput *newDeviceInput = (currentInput.device.position == AVCaptureDevicePositionFront) ? _defaultDeviceInput : _frontDeviceInput;
     [_session addInput:newDeviceInput];
-    
+
     [_session commitConfiguration];
   }
 }
@@ -156,18 +156,18 @@
 {
   @autoreleasepool {
     AVCaptureDevice *captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    
+
     if (!captureDevice) {
       return NO;
     }
-    
+
     NSError *error;
     AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
-    
+
     if (!deviceInput || error) {
       return NO;
     }
-    
+
     return YES;
   }
 }
@@ -177,28 +177,28 @@
   if (![self isAvailable]) {
     return NO;
   }
-  
+
   @autoreleasepool {
     // Setup components
     AVCaptureDevice *captureDevice    = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:nil];
     AVCaptureMetadataOutput *output   = [[AVCaptureMetadataOutput alloc] init];
     AVCaptureSession *session         = [[AVCaptureSession alloc] init];
-    
+
     [session addInput:deviceInput];
     [session addOutput:output];
-    
+
     if (metadataObjectTypes == nil || metadataObjectTypes.count == 0) {
       // Check the QRCode metadata object type by default
       metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
     }
-    
+
     for (NSString *metadataObjectType in metadataObjectTypes) {
       if (![output.availableMetadataObjectTypes containsObject:metadataObjectType]) {
         return NO;
       }
     }
-    
+
     return YES;
   }
 }
@@ -218,11 +218,11 @@
     if ([current isKindOfClass:[AVMetadataMachineReadableCodeObject class]]
         && [_metadataObjectTypes containsObject:current.type]) {
       NSString *scannedResult = [(AVMetadataMachineReadableCodeObject *) current stringValue];
-      
+
       if (_completionBlock) {
         _completionBlock(scannedResult);
       }
-      
+
       break;
     }
   }
