@@ -62,7 +62,7 @@ $ open MyProject.xcworkspace
   // Or by using blocks
   [_reader setCompletionWithBlock:^(NSString *resultAsString) {
     [self dismissViewControllerAnimated:YES completion:^{
-      NSLog(@"%@", result);
+      NSLog(@"%@", resultAsString);
     }];
   }];
   
