@@ -130,6 +130,31 @@
  */
 - (BOOL)hasFrontDevice;
 
+#pragma mark - Getting Inputs and Outputs
+/** @name Getting Inputs and Outputs */
+
+/**
+ * @abstract Accessing to the `AVCaptureDeviceInput` object representing 
+ * the default device input (generally the back camera).
+ * @since 3.5.0
+ */
+@property (readonly) AVCaptureDeviceInput *defaultDeviceInput;
+
+/**
+ * @abstract Accessing to the `AVCaptureDeviceInput` object representing
+ * the front device input.
+ * @since 3.5.0
+ */
+@property (readonly) AVCaptureDeviceInput *frontDeviceInput;
+
+/**
+ * @abstract Accessing to the `AVCaptureMetadataOutput` object.
+ * @discussion It allows you to configure the scanner to restrict the area of
+ * the scan to the overlay one for example.
+ * @since 3.5.0
+ */
+@property (readonly) AVCaptureMetadataOutput *metadataOutput;
+
 #pragma mark - Managing the Orientation
 /** @name Managing the Orientation */
 
@@ -141,7 +166,6 @@
  * @since 3.1.0
  */
 + (AVCaptureVideoOrientation)videoOrientationFromInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
-
 
 #pragma mark - Managing the Block
 /** @name Managing the Block */
