@@ -47,7 +47,7 @@
  * @see initWithCancelButtonTitle:metadataObjectTypes:
  * @since 1.0.0
  */
-- (id)initWithCancelButtonTitle:(NSString *)cancelTitle;
+- (nonnull id)initWithCancelButtonTitle:(nullable NSString *)cancelTitle;
 
 /**
  * @abstract Creates a view controller to read QRCodes from a displayed
@@ -56,7 +56,7 @@
  * @see initWithCancelButtonTitle:
  * @since 1.0.0
  */
-+ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle;
++ (nonnull instancetype)readerWithCancelButtonTitle:(nullable NSString *)cancelTitle;
 
 /**
  * @abstract Initializes a reader view controller with a list of metadata
@@ -66,7 +66,7 @@
  * @see initWithCancelButtonTitle:metadataObjectTypes:
  * @since 3.0.0
  */
-- (id)initWithMetadataObjectTypes:(NSArray *)metadataObjectTypes;
+- (nonnull id)initWithMetadataObjectTypes:(nonnull NSArray *)metadataObjectTypes;
 
 /**
  * @abstract Creates a reader view controller with a list of metadata object
@@ -76,7 +76,7 @@
  * @see initWithMetadataObjectTypes:
  * @since 3.0.0
  */
-+ (instancetype)readerWithMetadataObjectTypes:(NSArray *)metadataObjectTypes;
++ (nonnull instancetype)readerWithMetadataObjectTypes:(nonnull NSArray *)metadataObjectTypes;
 
 /**
  * @abstract Initializes a view controller to read wanted metadata object
@@ -86,7 +86,7 @@
  * @see initWithCancelButtonTitle:codeReader:
  * @since 2.0.0
  */
-- (id)initWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes;
+- (nonnull id)initWithCancelButtonTitle:(nullable NSString *)cancelTitle metadataObjectTypes:(nonnull NSArray *)metadataObjectTypes;
 
 /**
  * @abstract Creates a view controller to read wanted metadata object types
@@ -96,7 +96,7 @@
  * @see initWithCancelButtonTitle:metadataObjectTypes:
  * @since 2.0.0
  */
-+ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes;
++ (nonnull instancetype)readerWithCancelButtonTitle:(nullable NSString *)cancelTitle metadataObjectTypes:(nonnull NSArray *)metadataObjectTypes;
 
 /**
  * @abstract Initializes a view controller using a cancel button title and
@@ -106,7 +106,7 @@
  * @see initWithCancelButtonTitle:codeReader:startScanningAtLoad:
  * @since 3.0.0
  */
-- (id)initWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader;
+- (nonnull id)initWithCancelButtonTitle:(nullable NSString *)cancelTitle codeReader:(nonnull QRCodeReader *)codeReader;
 
 /**
  * @abstract Initializes a view controller using a cancel button title and
@@ -116,7 +116,7 @@
  * @see initWithCancelButtonTitle:codeReader:
  * @since 3.0.0
  */
-+ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader;
++ (nonnull instancetype)readerWithCancelButtonTitle:(nullable NSString *)cancelTitle codeReader:(nonnull QRCodeReader *)codeReader;
 
 /**
  * @abstract Initializes a view controller using a cancel button title and
@@ -126,7 +126,7 @@
  * @param startScanningAtLoad Flag to know whether the view controller start scanning the codes when the view will appear.
  * @since 3.0.0
  */
-- (id)initWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad;
+- (nonnull id)initWithCancelButtonTitle:(nullable NSString *)cancelTitle codeReader:(nonnull QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad;
 
 /**
  * @abstract Initializes a view controller using a cancel button title and
@@ -137,7 +137,7 @@
  * @see initWithCancelButtonTitle:codeReader:startScanningAtLoad:
  * @since 3.0.0
  */
-+ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader  startScanningAtLoad:(BOOL)startScanningAtLoad;
++ (nonnull instancetype)readerWithCancelButtonTitle:(nullable NSString *)cancelTitle codeReader:(nonnull QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad;
 
 #pragma mark - Controlling the Reader
 /** @name Controlling the Reader */
@@ -162,7 +162,7 @@
  * reader.
  * @since 1.0.0
  */
-@property (nonatomic, weak) id<QRCodeReaderDelegate> delegate;
+@property (nonatomic, weak) id<QRCodeReaderDelegate> __nullable delegate;
 
 /**
  * @abstract Sets the completion with a block that executes when a QRCode
@@ -182,6 +182,6 @@
  * @abstract The default code reader created with the controller.
  * @since 3.0.0
  */
-@property (strong, nonatomic, readonly) QRCodeReader *codeReader;
+@property (strong, nonatomic, readonly) QRCodeReader * __nonnull codeReader;
 
 @end

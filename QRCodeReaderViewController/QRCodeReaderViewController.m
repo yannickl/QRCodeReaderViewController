@@ -128,7 +128,7 @@
   return [[self alloc] initWithCancelButtonTitle:cancelTitle codeReader:codeReader];
 }
 
-+ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader  startScanningAtLoad:(BOOL)startScanningAtLoad
++ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad
 {
   return [[self alloc] initWithCancelButtonTitle:cancelTitle codeReader:codeReader startScanningAtLoad:startScanningAtLoad];
 }
