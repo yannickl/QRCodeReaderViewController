@@ -35,7 +35,7 @@
 @property (strong, nonatomic) QRCodeReader         *codeReader;
 @property (assign, nonatomic) BOOL                 startScanningAtLoad;
 
-@property (copy, nonatomic) void (^completionBlock) (NSString *);
+@property (copy, nonatomic) void (^completionBlock) (NSString * __nullable);
 
 @end
 

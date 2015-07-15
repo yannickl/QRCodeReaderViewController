@@ -173,7 +173,7 @@
  * is nil.
  * @since 1.0.1
  */
-- (void)setCompletionWithBlock:(void (^) (NSString *resultAsString))completionBlock;
+- (void)setCompletionWithBlock:(nullable void (^) (NSString * __nullable resultAsString))completionBlock;
 
 #pragma mark - Managing the Reader
 /** @name Managing the Reader */
