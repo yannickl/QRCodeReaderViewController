@@ -13,3 +13,5 @@ Please keep the list sorted.
 ### People and companies, who have contributed
 
  * [Akira Matsuda](https://github.com/0x0c)
+ * [Andrea Mazzini](https://github.com/andreamazz)
+ * [Jan](https://github.com/jaltek)
