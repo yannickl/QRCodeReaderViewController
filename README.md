@@ -6,6 +6,53 @@ It provides a default view controller to display the camera view with the scan a
 
 ![screenshot](http://yannickloriot.com/resources/qrcodereader.swift-screenshot.jpg)
 
+## Usage
+
+Here is a very simple example how to work with `QRCodeReaderViewController`:
+
+```objective-c
+- (IBAction)scanAction:(id)sender
+{
+  NSArray *types = @[AVMetadataObjectTypeQRCode];
+  _reader        = [QRCodeReaderViewController readerWithMetadataObjectTypes:types];
+
+  // Set the presentation style
+  _reader.modalPresentationStyle = UIModalPresentationFormSheet;
+
+  // Using delegate methods
+  _reader.delegate = self;
+
+  // Or by using blocks
+  [_reader setCompletionWithBlock:^(NSString *resultAsString) {
+    [self dismissViewControllerAnimated:YES completion:^{
+      NSLog(@"%@", resultAsString);
+    }];
+  }];
+
+  [self presentViewController:_reader animated:YES completion:NULL];
+}
+```
+
+And here the delegate methods:
+
+```objective-c
+#pragma mark - QRCodeReader Delegate Methods
+
+- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
+{
+  [self dismissViewControllerAnimated:YES completion:^{
+    NSLog(@"%@", result);
+  }];
+}
+
+- (void)readerDidCancel:(QRCodeReaderViewController *)reader
+{
+  [self dismissViewControllerAnimated:YES completion:NULL];
+}
+```
+
+*Note that you should check whether the device supports the reader library by using the `[QRCodeReader isAvailable]` or the `[QRCodeReader supportsMetadataObjectTypes:nil]` methods.*
+
 ### Installation
 
 The recommended approach to use _QRCodeReaderViewController_ in your project is using the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation.
@@ -44,47 +91,6 @@ $ open MyProject.xcworkspace
 #### Manually
 
 [Download](https://github.com/YannickL/QRCodeReaderViewController/archive/master.zip) the project and copy the `QRCodeReaderViewController` folder into your project and then simply `#import "QRCodeReaderViewController.h"` in the file(s) you would like to use it in.
-
-## Usage
-
-```objective-c
-- (IBAction)scanAction:(id)sender
-{
-  NSArray *types = @[AVMetadataObjectTypeQRCode];
-  _reader        = [QRCodeReaderViewController readerWithMetadataObjectTypes:types];
-  
-  // Set the presentation style
-  _reader.modalPresentationStyle = UIModalPresentationFormSheet;
-  
-  // Using delegate methods
-  _reader.delegate = self;
-  
-  // Or by using blocks
-  [_reader setCompletionWithBlock:^(NSString *resultAsString) {
-    [self dismissViewControllerAnimated:YES completion:^{
-      NSLog(@"%@", resultAsString);
-    }];
-  }];
-  
-  [self presentViewController:_reader animated:YES completion:NULL];
-}
-
-#pragma mark - QRCodeReader Delegate Methods
-
-- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
-{
-  [self dismissViewControllerAnimated:YES completion:^{
-    NSLog(@"%@", result);
-  }];
-}
-
-- (void)readerDidCancel:(QRCodeReaderViewController *)reader
-{
-  [self dismissViewControllerAnimated:YES completion:NULL];
-}
-```
-
-*Note that you should check whether the device supports the reader library by using the `[QRCodeReader isAvailable]` or the `[QRCodeReader supportsMetadataObjectTypes:nil]` methods.*
 
 ## Contact
 
