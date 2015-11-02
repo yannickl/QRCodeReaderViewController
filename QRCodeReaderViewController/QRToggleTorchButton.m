@@ -46,9 +46,6 @@
   UIColor *paintColor  = (self.state != UIControlStateHighlighted) ? _fillColor : _fillHighlightedColor;
   UIColor *strokeColor = (self.state != UIControlStateHighlighted) ? _edgeColor : _edgeHighlightedColor;
 
-  [paintColor setFill];
-  [strokeColor setFill];
-
   // Torch box
 
   CGFloat width   = rect.size.width;
@@ -68,6 +65,8 @@
   [circlePath addArcWithCenter:CGPointMake(centerX, centerY) radius:circleRadius startAngle:M_PI endAngle:M_PI * 2 clockwise:YES];
 
   // Draw beams
+  [paintColor setFill];
+  
   for (int i = 0; i < 8; i++) {
     CGFloat angle = ((2 * M_PI) / 8) * i;
 
@@ -79,6 +78,8 @@
   }
 
   // Draw circle
+  [strokeColor setFill];
+
   circlePath.lineWidth = strokeLineWidth;
   [circlePath fill];
   [circlePath stroke];
