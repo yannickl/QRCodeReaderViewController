@@ -14,7 +14,7 @@ Here is a very simple example how to work with `QRCodeReaderViewController`:
 
 ```objective-c
 // Create the reader object
-QRCodeReader *reader           = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
 
 // Instantiate the view controller
 QRCodeReaderViewController *vc = [QRCodeReaderViewController readerWithCancelButtonTitle:@"Cancel" codeReader:_reader startScanningAtLoad:YES showSwitchCameraButton:YES showTorchButton:YES];
@@ -34,6 +34,8 @@ _vc.delegate = self;
 Now when we touch the scan button we need to display the QRCodeReaderViewController:
 
 ```objective-c
+#pragma mark - Action Methods
+
 - (IBAction)scanAction:(id)sender
 {
   [self presentViewController:_vc animated:YES completion:NULL];
