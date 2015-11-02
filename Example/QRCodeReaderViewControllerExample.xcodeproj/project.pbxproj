@@ -18,6 +18,7 @@
 		CE99CEFD1A9BCA1100CB8AD8 /* QRCodeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE99CEFC1A9BCA1100CB8AD8 /* QRCodeReader.m */; };
 		CEAF7A661A16A31600991CF8 /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7A651A16A31600991CF8 /* QRCodeReaderView.m */; };
 		CEAF7A691A16B05400991CF8 /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7A681A16B05400991CF8 /* QRCameraSwitchButton.m */; };
+		CEF6D1641BE7B2B0006D575D /* QRToggleTorchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6D1631BE7B2B0006D575D /* QRToggleTorchButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		CEAF7A651A16A31600991CF8 /* QRCodeReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderView.m; sourceTree = "<group>"; };
 		CEAF7A671A16B05400991CF8 /* QRCameraSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCameraSwitchButton.h; sourceTree = "<group>"; };
 		CEAF7A681A16B05400991CF8 /* QRCameraSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCameraSwitchButton.m; sourceTree = "<group>"; };
+		CEF6D1621BE7B2B0006D575D /* QRToggleTorchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRToggleTorchButton.h; sourceTree = "<group>"; };
+		CEF6D1631BE7B2B0006D575D /* QRToggleTorchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRToggleTorchButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,8 @@
 				CE99CEFC1A9BCA1100CB8AD8 /* QRCodeReader.m */,
 				CEAF7A671A16B05400991CF8 /* QRCameraSwitchButton.h */,
 				CEAF7A681A16B05400991CF8 /* QRCameraSwitchButton.m */,
+				CEF6D1621BE7B2B0006D575D /* QRToggleTorchButton.h */,
+				CEF6D1631BE7B2B0006D575D /* QRToggleTorchButton.m */,
 			);
 			name = QRCodeReaderViewController;
 			path = ../QRCodeReaderViewController;
@@ -249,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE2960241987F124008FA93B /* ViewController.m in Sources */,
+				CEF6D1641BE7B2B0006D575D /* QRToggleTorchButton.m in Sources */,
 				CEAF7A691A16B05400991CF8 /* QRCameraSwitchButton.m in Sources */,
 				CE99CEFD1A9BCA1100CB8AD8 /* QRCodeReader.m in Sources */,
 				CE2960211987F124008FA93B /* AppDelegate.m in Sources */,

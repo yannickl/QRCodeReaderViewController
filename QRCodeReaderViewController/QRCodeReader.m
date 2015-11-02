@@ -114,6 +114,26 @@
   return _frontDevice != nil;
 }
 
+- (BOOL)isTorchAvailable
+{
+  return _defaultDevice.hasTorch;
+}
+
+- (void)toggleTorch
+{
+  NSError *error = nil;
+
+  [_defaultDevice lockForConfiguration:&error];
+
+  if (error == nil) {
+    AVCaptureTorchMode mode = _defaultDevice.torchMode;
+
+    _defaultDevice.torchMode = mode == AVCaptureTorchModeOn ? AVCaptureTorchModeOff : AVCaptureTorchModeOn;
+  }
+  
+  [_defaultDevice unlockForConfiguration];
+}
+
 #pragma mark - Controlling Reader
 
 - (void)startScanning

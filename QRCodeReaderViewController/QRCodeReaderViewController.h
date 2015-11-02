@@ -123,7 +123,9 @@
  * a code reader.
  * @param cancelTitle The title of the cancel button.
  * @param codeReader The reader to decode the codes.
- * @param startScanningAtLoad Flag to know whether the view controller start scanning the codes when the view will appear.
+ * @param startScanningAtLoad Flag to know whether the view controller start
+ * scanning the codes when the view will appear.
+ * @see initWithCancelButtonTitle:codeReader:
  * @since 3.0.0
  */
 - (nonnull id)initWithCancelButtonTitle:(nullable NSString *)cancelTitle codeReader:(nonnull QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad;
@@ -133,11 +135,41 @@
  * a code reader.
  * @param cancelTitle The title of the cancel button.
  * @param codeReader The reader to decode the codes.
- * @param startScanningAtLoad Flag to know whether the view controller start scanning the codes when the view will appear.
- * @see initWithCancelButtonTitle:codeReader:startScanningAtLoad:
+ * @param startScanningAtLoad Flag to know whether the view controller start
+ * scanning the codes when the view will appear.
+ * @see initWithCancelButtonTitle:codeReader:startScanningAtLoad:showSwitchCameraButton:showTorchButton:
  * @since 3.0.0
  */
 + (nonnull instancetype)readerWithCancelButtonTitle:(nullable NSString *)cancelTitle codeReader:(nonnull QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad;
+
+/**
+ * @abstract Initializes a view controller using a cancel button title and
+ * a code reader.
+ * @param cancelTitle The title of the cancel button.
+ * @param codeReader The reader to decode the codes.
+ * @param startScanningAtLoad Flag to know whether the view controller start
+ * scanning the codes when the view will appear.
+ * @param showSwitchCameraButton Flag to display the switch camera button.
+ * @param showTorchButton Flag to know whether the view controller start
+ * scanning the codes when the view will appear.
+ * @since 4.0.0
+ */
+- (nonnull id)initWithCancelButtonTitle:(nullable NSString *)cancelTitle codeReader:(nonnull QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad showSwitchCameraButton:(BOOL)showSwitchCameraButton showTorchButton:(BOOL)showTorchButton;
+
+/**
+ * @abstract Initializes a view controller using a cancel button title and
+ * a code reader.
+ * @param cancelTitle The title of the cancel button.
+ * @param codeReader The reader to decode the codes.
+ * @param startScanningAtLoad Flag to know whether the view controller start
+ * scanning the codes when the view will appear.
+ * @param showSwitchCameraButton Flag to display the switch camera button.
+ * @param showTorchButton Flag to know whether the view controller start
+ * scanning the codes when the view will appear.
+ * @see initWithCancelButtonTitle:codeReader:startScanningAtLoad:showSwitchCameraButton:showTorchButton:
+ * @since 4.0.0
+ */
++ (nonnull instancetype)readerWithCancelButtonTitle:(nullable NSString *)cancelTitle codeReader:(nonnull QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad showSwitchCameraButton:(BOOL)showSwitchCameraButton showTorchButton:(BOOL)showTorchButton;
 
 #pragma mark - Controlling the Reader
 /** @name Controlling the Reader */

@@ -27,13 +27,17 @@
 #import "QRCodeReaderViewController.h"
 #import "QRCameraSwitchButton.h"
 #import "QRCodeReaderView.h"
+#import "QRToggleTorchButton.h"
 
 @interface QRCodeReaderViewController ()
 @property (strong, nonatomic) QRCameraSwitchButton *switchCameraButton;
+@property (strong, nonatomic) QRToggleTorchButton *toggleTorchButton;
 @property (strong, nonatomic) QRCodeReaderView     *cameraView;
 @property (strong, nonatomic) UIButton             *cancelButton;
 @property (strong, nonatomic) QRCodeReader         *codeReader;
 @property (assign, nonatomic) BOOL                 startScanningAtLoad;
+@property (assign, nonatomic) BOOL                 showSwitchCameraButton;
+@property (assign, nonatomic) BOOL                 showTorchButton;
 
 @property (copy, nonatomic) void (^completionBlock) (NSString * __nullable);
 
@@ -77,10 +81,17 @@
 
 - (id)initWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad
 {
+  return [self initWithCancelButtonTitle:cancelTitle codeReader:codeReader startScanningAtLoad:startScanningAtLoad showSwitchCameraButton:YES showTorchButton:NO];
+}
+
+- (id)initWithCancelButtonTitle:(nullable NSString *)cancelTitle codeReader:(nonnull QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad showSwitchCameraButton:(BOOL)showSwitchCameraButton showTorchButton:(BOOL)showTorchButton
+{
   if ((self = [super init])) {
-    self.view.backgroundColor = [UIColor blackColor];
-    self.codeReader           = codeReader;
-    self.startScanningAtLoad  = startScanningAtLoad;
+    self.view.backgroundColor   = [UIColor blackColor];
+    self.codeReader             = codeReader;
+    self.startScanningAtLoad    = startScanningAtLoad;
+    self.showSwitchCameraButton = showSwitchCameraButton;
+    self.showTorchButton        = showTorchButton;
 
     if (cancelTitle == nil) {
       cancelTitle = NSLocalizedString(@"Cancel", @"Cancel");
@@ -131,6 +142,11 @@
 + (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad
 {
   return [[self alloc] initWithCancelButtonTitle:cancelTitle codeReader:codeReader startScanningAtLoad:startScanningAtLoad];
+}
+
++ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad showSwitchCameraButton:(BOOL)showSwitchCameraButton showTorchButton:(BOOL)showTorchButton
+{
+  return [[self alloc] initWithCancelButtonTitle:cancelTitle codeReader:codeReader startScanningAtLoad:startScanningAtLoad showSwitchCameraButton:showSwitchCameraButton showTorchButton:showTorchButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -209,11 +225,20 @@
     _codeReader.previewLayer.connection.videoOrientation = [QRCodeReader videoOrientationFromInterfaceOrientation:orientation];
   }
 
-  if ([_codeReader hasFrontDevice]) {
+  if (_showSwitchCameraButton && [_codeReader hasFrontDevice]) {
     _switchCameraButton = [[QRCameraSwitchButton alloc] init];
+    
     [_switchCameraButton setTranslatesAutoresizingMaskIntoConstraints:false];
     [_switchCameraButton addTarget:self action:@selector(switchCameraAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_switchCameraButton];
+  }
+
+  if (_showTorchButton && [_codeReader isTorchAvailable]) {
+    _toggleTorchButton = [[QRToggleTorchButton alloc] init];
+
+    [_toggleTorchButton setTranslatesAutoresizingMaskIntoConstraints:false];
+    [_toggleTorchButton addTarget:self action:@selector(toggleTorchAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_toggleTorchButton];
   }
 
   self.cancelButton                                       = [[UIButton alloc] init];
@@ -268,6 +293,11 @@
 - (void)switchCameraAction:(UIButton *)button
 {
   [self switchDeviceInput];
+}
+
+- (void)toggleTorchAction:(UIButton *)button
+{
+  [_codeReader toggleTorch];
 }
 
 @end

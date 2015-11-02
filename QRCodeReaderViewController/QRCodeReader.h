@@ -130,6 +130,19 @@
  */
 - (BOOL)hasFrontDevice;
 
+/**
+ * @abstract Returns true whether a torch is available.
+ * @return true if a torch is available.
+ * @since 4.0.0
+ */
+- (BOOL)isTorchAvailable;
+
+/**
+ * @abstract Toggles torch on the default device.
+ * @since 4.0.0
+ */
+- (void)toggleTorch;
+
 #pragma mark - Getting Inputs and Outputs
 /** @name Getting Inputs and Outputs */
 
