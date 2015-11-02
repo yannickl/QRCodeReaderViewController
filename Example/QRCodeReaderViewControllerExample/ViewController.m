@@ -37,20 +37,21 @@
 - (IBAction)scanAction:(id)sender
 {
   if ([QRCodeReader supportsMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]]) {
-    static QRCodeReaderViewController *reader = nil;
+    static QRCodeReaderViewController *vc = nil;
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-      reader                        = [QRCodeReaderViewController new];
-      reader.modalPresentationStyle = UIModalPresentationFormSheet;
+      QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+      vc                   = [QRCodeReaderViewController readerWithCancelButtonTitle:@"Cancel" codeReader:reader startScanningAtLoad:YES showSwitchCameraButton:YES showTorchButton:YES];
+      vc.modalPresentationStyle = UIModalPresentationFormSheet;
     });
-    reader.delegate = self;
+    vc.delegate = self;
 
-    [reader setCompletionWithBlock:^(NSString *resultAsString) {
+    [vc setCompletionWithBlock:^(NSString *resultAsString) {
       NSLog(@"Completion with result: %@", resultAsString);
     }];
 
-    [self presentViewController:reader animated:YES completion:NULL];
+    [self presentViewController:vc animated:YES completion:NULL];
   }
   else {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Reader not supported by the current device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

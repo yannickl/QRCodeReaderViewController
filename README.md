@@ -13,25 +13,30 @@ It provides a default view controller to display the camera view with the scan a
 Here is a very simple example how to work with `QRCodeReaderViewController`:
 
 ```objective-c
+// Create the reader object
+QRCodeReader *reader           = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+
+// Instantiate the view controller
+QRCodeReaderViewController *vc = [QRCodeReaderViewController readerWithCancelButtonTitle:@"Cancel" codeReader:_reader startScanningAtLoad:YES showSwitchCameraButton:YES showTorchButton:YES];
+
+// Set the presentation style
+_vc.modalPresentationStyle = UIModalPresentationFormSheet;
+
+// Define the delegate receiver
+_vc.delegate = self;
+
+// Or use blocks
+[_reader setCompletionWithBlock:^(NSString *resultAsString) {
+  NSLog(@"%@", resultAsString);
+}];
+```
+
+Now when we touch the scan button we need to display the QRCodeReaderViewController:
+
+```objective-c
 - (IBAction)scanAction:(id)sender
 {
-  NSArray *types = @[AVMetadataObjectTypeQRCode];
-  _reader        = [QRCodeReaderViewController readerWithMetadataObjectTypes:types];
-
-  // Set the presentation style
-  _reader.modalPresentationStyle = UIModalPresentationFormSheet;
-
-  // Using delegate methods
-  _reader.delegate = self;
-
-  // Or by using blocks
-  [_reader setCompletionWithBlock:^(NSString *resultAsString) {
-    [self dismissViewControllerAnimated:YES completion:^{
-      NSLog(@"%@", resultAsString);
-    }];
-  }];
-
-  [self presentViewController:_reader animated:YES completion:NULL];
+  [self presentViewController:_vc animated:YES completion:NULL];
 }
 ```
 
@@ -75,7 +80,7 @@ $ touch Podfile
 $ edit Podfile
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
-pod 'QRCodeReaderViewController', '~> 3.5.2'
+pod 'QRCodeReaderViewController', '~> 4.0.0'
 ```
 
 Install into your project:

@@ -1,5 +1,13 @@
 # Change log
 
+## [Version 4.0.0](https://github.com/yannickl/QRCodeReaderViewController/releases/tag/4.0.0)
+Released on 2015-11-02.
+
+- [ADD] Availability to disable the switch camera button.
+- [ADD] Torch button
+- [ADD] `initWithCancelButtonTitle:codeReader:startScanningAtLoad:showSwitchCameraButton:showTorchButton:` method in the `QRCodeReaderViewController`
+- [ADD] `isTorchAvailable` and `toggleTorch` methods in the `QRCodeReader`
+
 ## [Version 3.5.0](https://github.com/yannickl/QRCodeReaderViewController/releases/tag/3.5.0)
 Released on 2015-07-10.
 
