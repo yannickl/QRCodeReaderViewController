@@ -1,5 +1,10 @@
 # Change log
 
+## [Version 4.0.1](https://github.com/yannickl/QRCodeReaderViewController/releases/tag/4.0.1)
+Released on 2015-11-07.
+
+- [FIX] Switch camera and toggle button under status bar [#14](https://github.com/yannickl/QRCodeReaderViewController/issues/14)
+
 ## [Version 4.0.0](https://github.com/yannickl/QRCodeReaderViewController/releases/tag/4.0.0)
 Released on 2015-11-02.
 
