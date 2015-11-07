@@ -82,7 +82,7 @@ $ touch Podfile
 $ edit Podfile
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
-pod 'QRCodeReaderViewController', '~> 4.0.0'
+pod 'QRCodeReaderViewController', '~> 4.0.1'
 ```
 
 Install into your project:
