@@ -19,6 +19,11 @@
 		CEAF7A661A16A31600991CF8 /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7A651A16A31600991CF8 /* QRCodeReaderView.m */; };
 		CEAF7A691A16B05400991CF8 /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7A681A16B05400991CF8 /* QRCameraSwitchButton.m */; };
 		CEF6D1641BE7B2B0006D575D /* QRToggleTorchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6D1631BE7B2B0006D575D /* QRToggleTorchButton.m */; };
+		D424A6111CBBB0F90076F44D /* center_qrcode_leftdown_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D424A60C1CBBB0F90076F44D /* center_qrcode_leftdown_img@2x.png */; };
+		D424A6121CBBB0F90076F44D /* center_qrcode_leftup_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D424A60D1CBBB0F90076F44D /* center_qrcode_leftup_img@2x.png */; };
+		D424A6131CBBB0F90076F44D /* center_qrcode_line_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D424A60E1CBBB0F90076F44D /* center_qrcode_line_img@2x.png */; };
+		D424A6141CBBB0F90076F44D /* center_qrcode_rightdown_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D424A60F1CBBB0F90076F44D /* center_qrcode_rightdown_img@2x.png */; };
+		D424A6151CBBB0F90076F44D /* center_qrcode_rightup_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D424A6101CBBB0F90076F44D /* center_qrcode_rightup_img@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +60,11 @@
 		CEAF7A681A16B05400991CF8 /* QRCameraSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCameraSwitchButton.m; sourceTree = "<group>"; };
 		CEF6D1621BE7B2B0006D575D /* QRToggleTorchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRToggleTorchButton.h; sourceTree = "<group>"; };
 		CEF6D1631BE7B2B0006D575D /* QRToggleTorchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRToggleTorchButton.m; sourceTree = "<group>"; };
+		D424A60C1CBBB0F90076F44D /* center_qrcode_leftdown_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "center_qrcode_leftdown_img@2x.png"; sourceTree = "<group>"; };
+		D424A60D1CBBB0F90076F44D /* center_qrcode_leftup_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "center_qrcode_leftup_img@2x.png"; sourceTree = "<group>"; };
+		D424A60E1CBBB0F90076F44D /* center_qrcode_line_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "center_qrcode_line_img@2x.png"; sourceTree = "<group>"; };
+		D424A60F1CBBB0F90076F44D /* center_qrcode_rightdown_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "center_qrcode_rightdown_img@2x.png"; sourceTree = "<group>"; };
+		D424A6101CBBB0F90076F44D /* center_qrcode_rightup_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "center_qrcode_rightup_img@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +147,7 @@
 		CE29603E1987F140008FA93B /* QRCodeReaderViewController */ = {
 			isa = PBXGroup;
 			children = (
+				D424A60B1CBBB0F90076F44D /* Resources */,
 				CE29603F1987F140008FA93B /* QRCodeReaderDelegate.h */,
 				CE2960401987F140008FA93B /* QRCodeReaderViewController.h */,
 				CE2960411987F140008FA93B /* QRCodeReaderViewController.m */,
@@ -151,6 +162,18 @@
 			);
 			name = QRCodeReaderViewController;
 			path = ../QRCodeReaderViewController;
+			sourceTree = "<group>";
+		};
+		D424A60B1CBBB0F90076F44D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D424A60C1CBBB0F90076F44D /* center_qrcode_leftdown_img@2x.png */,
+				D424A60D1CBBB0F90076F44D /* center_qrcode_leftup_img@2x.png */,
+				D424A60E1CBBB0F90076F44D /* center_qrcode_line_img@2x.png */,
+				D424A60F1CBBB0F90076F44D /* center_qrcode_rightdown_img@2x.png */,
+				D424A6101CBBB0F90076F44D /* center_qrcode_rightup_img@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,7 +225,7 @@
 				TargetAttributes = {
 					CE2960171987F124008FA93B = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 5SJ773RP6R;
+						DevelopmentTeam = 84LY8T43ZV;
 					};
 					CE29602D1987F124008FA93B = {
 						CreatedOnToolsVersion = 6.0;
@@ -234,6 +257,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D424A6151CBBB0F90076F44D /* center_qrcode_rightup_img@2x.png in Resources */,
+				D424A6111CBBB0F90076F44D /* center_qrcode_leftdown_img@2x.png in Resources */,
+				D424A6131CBBB0F90076F44D /* center_qrcode_line_img@2x.png in Resources */,
+				D424A6141CBBB0F90076F44D /* center_qrcode_rightdown_img@2x.png in Resources */,
+				D424A6121CBBB0F90076F44D /* center_qrcode_leftup_img@2x.png in Resources */,
 				CE2960271987F124008FA93B /* Main.storyboard in Resources */,
 				CE2960291987F124008FA93B /* Images.xcassets in Resources */,
 			);
@@ -379,13 +407,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bo Liu (C27S66H283)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bo Liu (C27S66H283)";
 				INFOPLIST_FILE = QRCodeReaderViewControllerExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yannickloriot.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tgnet.ywq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4290ec7a-f199-4988-8b69-9ee1492b3634";
 			};
 			name = Debug;
 		};
@@ -394,13 +422,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bo Liu (C27S66H283)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bo Liu (C27S66H283)";
 				INFOPLIST_FILE = QRCodeReaderViewControllerExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yannickloriot.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tgnet.ywq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4290ec7a-f199-4988-8b69-9ee1492b3634";
 			};
 			name = Release;
 		};
