@@ -24,35 +24,32 @@
  *
  */
 
-#import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "QRCodeReaderViewController.h"
 
-@interface QRCodeReaderViewControllerExampleTests : XCTestCase
+@interface QRCodeReaderTests : XCTestCase
 
 @end
 
-@implementation QRCodeReaderViewControllerExampleTests
+@implementation QRCodeReaderTests
 
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
+- (void)testMetadataObjectMethod {
+  QRCodeReader *reader =[[QRCodeReader alloc] init];
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
+  XCTAssertEqual(reader.metadataObjectTypes.count, 1);
+  XCTAssertEqual(reader.metadataObjectTypes[0], AVMetadataObjectTypeQRCode);
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
+  reader =[[QRCodeReader alloc] initWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode,
+                                                              AVMetadataObjectTypeCode93Code,
+                                                              AVMetadataObjectTypeDataMatrixCode]];
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+  XCTAssertEqual(reader.metadataObjectTypes.count, 3);
+  XCTAssertEqual(reader.metadataObjectTypes[0], AVMetadataObjectTypeQRCode);
+  XCTAssertEqual(reader.metadataObjectTypes[1], AVMetadataObjectTypeCode93Code);
+  XCTAssertEqual(reader.metadataObjectTypes[2], AVMetadataObjectTypeDataMatrixCode);
+
+  reader = [QRCodeReader readerWithMetadataObjectTypes:@[]];
+  XCTAssertEqual(reader.metadataObjectTypes.count, 0);
 }
 
 @end

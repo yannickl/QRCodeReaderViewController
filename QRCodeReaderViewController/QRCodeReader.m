@@ -41,6 +41,17 @@
 
 @implementation QRCodeReader
 
+- (id)init
+{
+  if ((self = [super init])) {
+    _metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
+
+    [self setupAVComponents];
+    [self configureDefaultComponents];
+  }
+  return self;
+}
+
 - (id)initWithMetadataObjectTypes:(NSArray *)metadataObjectTypes
 {
   if ((self = [super init])) {
@@ -237,7 +248,7 @@
   for (AVMetadataObject *current in metadataObjects) {
     if ([current isKindOfClass:[AVMetadataMachineReadableCodeObject class]]
         && [_metadataObjectTypes containsObject:current.type]) {
-      NSString *scannedResult = [(AVMetadataMachineReadableCodeObject *) current stringValue];
+      NSString *scannedResult = [(AVMetadataMachineReadableCodeObject *)current stringValue];
 
       if (_completionBlock) {
         _completionBlock(scannedResult);

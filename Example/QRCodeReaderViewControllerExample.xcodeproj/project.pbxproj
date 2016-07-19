@@ -12,17 +12,21 @@
 		CE2960241987F124008FA93B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2960231987F124008FA93B /* ViewController.m */; };
 		CE2960271987F124008FA93B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2960251987F124008FA93B /* Main.storyboard */; };
 		CE2960291987F124008FA93B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2960281987F124008FA93B /* Images.xcassets */; };
-		CE2960351987F125008FA93B /* QRCodeReaderViewControllerExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2960341987F125008FA93B /* QRCodeReaderViewControllerExampleTests.m */; };
 		CE2960421987F140008FA93B /* QRCodeReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2960411987F140008FA93B /* QRCodeReaderViewController.m */; };
-		CE2960431987F140008FA93B /* QRCodeReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2960411987F140008FA93B /* QRCodeReaderViewController.m */; };
 		CE99CEFD1A9BCA1100CB8AD8 /* QRCodeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE99CEFC1A9BCA1100CB8AD8 /* QRCodeReader.m */; };
+		CEAE68221D3EB66400A77AB2 /* QRCodeReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAE68211D3EB66400A77AB2 /* QRCodeReaderTests.m */; };
+		CEAE68291D3EB78300A77AB2 /* QRCodeReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2960411987F140008FA93B /* QRCodeReaderViewController.m */; };
+		CEAE682A1D3EB78300A77AB2 /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7A651A16A31600991CF8 /* QRCodeReaderView.m */; };
+		CEAE682B1D3EB78300A77AB2 /* QRCodeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE99CEFC1A9BCA1100CB8AD8 /* QRCodeReader.m */; };
+		CEAE682C1D3EB78300A77AB2 /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7A681A16B05400991CF8 /* QRCameraSwitchButton.m */; };
+		CEAE682D1D3EB78300A77AB2 /* QRToggleTorchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6D1631BE7B2B0006D575D /* QRToggleTorchButton.m */; };
 		CEAF7A661A16A31600991CF8 /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7A651A16A31600991CF8 /* QRCodeReaderView.m */; };
 		CEAF7A691A16B05400991CF8 /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF7A681A16B05400991CF8 /* QRCameraSwitchButton.m */; };
 		CEF6D1641BE7B2B0006D575D /* QRToggleTorchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6D1631BE7B2B0006D575D /* QRToggleTorchButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CE29602F1987F125008FA93B /* PBXContainerItemProxy */ = {
+		CEAE68241D3EB66400A77AB2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CE2960101987F124008FA93B /* Project object */;
 			proxyType = 1;
@@ -41,14 +45,14 @@
 		CE2960231987F124008FA93B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CE2960261987F124008FA93B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE2960281987F124008FA93B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		CE29602E1987F125008FA93B /* QRCodeReaderViewControllerExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QRCodeReaderViewControllerExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE2960331987F125008FA93B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE2960341987F125008FA93B /* QRCodeReaderViewControllerExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderViewControllerExampleTests.m; sourceTree = "<group>"; };
 		CE29603F1987F140008FA93B /* QRCodeReaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderDelegate.h; sourceTree = "<group>"; };
 		CE2960401987F140008FA93B /* QRCodeReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderViewController.h; sourceTree = "<group>"; };
 		CE2960411987F140008FA93B /* QRCodeReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderViewController.m; sourceTree = "<group>"; };
 		CE99CEFB1A9BCA1100CB8AD8 /* QRCodeReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReader.h; sourceTree = "<group>"; };
 		CE99CEFC1A9BCA1100CB8AD8 /* QRCodeReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReader.m; sourceTree = "<group>"; };
+		CEAE681F1D3EB66400A77AB2 /* QRCodeReaderViewControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QRCodeReaderViewControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEAE68211D3EB66400A77AB2 /* QRCodeReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderTests.m; sourceTree = "<group>"; };
+		CEAE68231D3EB66400A77AB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEAF7A641A16A31600991CF8 /* QRCodeReaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderView.h; sourceTree = "<group>"; };
 		CEAF7A651A16A31600991CF8 /* QRCodeReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderView.m; sourceTree = "<group>"; };
 		CEAF7A671A16B05400991CF8 /* QRCameraSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCameraSwitchButton.h; sourceTree = "<group>"; };
@@ -65,7 +69,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CE29602B1987F124008FA93B /* Frameworks */ = {
+		CEAE681C1D3EB66400A77AB2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -80,7 +84,7 @@
 			children = (
 				CE29603E1987F140008FA93B /* QRCodeReaderViewController */,
 				CE29601A1987F124008FA93B /* QRCodeReaderViewControllerExample */,
-				CE2960311987F125008FA93B /* QRCodeReaderViewControllerExampleTests */,
+				CEAE68201D3EB66400A77AB2 /* QRCodeReaderViewControllerTests */,
 				CE2960191987F124008FA93B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,7 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				CE2960181987F124008FA93B /* QRCodeReaderViewControllerExample.app */,
-				CE29602E1987F125008FA93B /* QRCodeReaderViewControllerExampleTests.xctest */,
+				CEAE681F1D3EB66400A77AB2 /* QRCodeReaderViewControllerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,23 +121,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CE2960311987F125008FA93B /* QRCodeReaderViewControllerExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				CE2960341987F125008FA93B /* QRCodeReaderViewControllerExampleTests.m */,
-				CE2960321987F125008FA93B /* Supporting Files */,
-			);
-			path = QRCodeReaderViewControllerExampleTests;
-			sourceTree = "<group>";
-		};
-		CE2960321987F125008FA93B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				CE2960331987F125008FA93B /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		CE29603E1987F140008FA93B /* QRCodeReaderViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +138,15 @@
 			);
 			name = QRCodeReaderViewController;
 			path = ../QRCodeReaderViewController;
+			sourceTree = "<group>";
+		};
+		CEAE68201D3EB66400A77AB2 /* QRCodeReaderViewControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				CEAE68211D3EB66400A77AB2 /* QRCodeReaderTests.m */,
+				CEAE68231D3EB66400A77AB2 /* Info.plist */,
+			);
+			path = QRCodeReaderViewControllerTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,22 +169,22 @@
 			productReference = CE2960181987F124008FA93B /* QRCodeReaderViewControllerExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CE29602D1987F124008FA93B /* QRCodeReaderViewControllerExampleTests */ = {
+		CEAE681E1D3EB66400A77AB2 /* QRCodeReaderViewControllerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE29603B1987F125008FA93B /* Build configuration list for PBXNativeTarget "QRCodeReaderViewControllerExampleTests" */;
+			buildConfigurationList = CEAE68281D3EB66400A77AB2 /* Build configuration list for PBXNativeTarget "QRCodeReaderViewControllerTests" */;
 			buildPhases = (
-				CE29602A1987F124008FA93B /* Sources */,
-				CE29602B1987F124008FA93B /* Frameworks */,
-				CE29602C1987F124008FA93B /* Resources */,
+				CEAE681B1D3EB66400A77AB2 /* Sources */,
+				CEAE681C1D3EB66400A77AB2 /* Frameworks */,
+				CEAE681D1D3EB66400A77AB2 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				CE2960301987F125008FA93B /* PBXTargetDependency */,
+				CEAE68251D3EB66400A77AB2 /* PBXTargetDependency */,
 			);
-			name = QRCodeReaderViewControllerExampleTests;
-			productName = QRCodeReaderViewControllerExampleTests;
-			productReference = CE29602E1987F125008FA93B /* QRCodeReaderViewControllerExampleTests.xctest */;
+			name = QRCodeReaderViewControllerTests;
+			productName = QRCodeReaderViewControllerTests;
+			productReference = CEAE681F1D3EB66400A77AB2 /* QRCodeReaderViewControllerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -204,8 +200,8 @@
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = 5SJ773RP6R;
 					};
-					CE29602D1987F124008FA93B = {
-						CreatedOnToolsVersion = 6.0;
+					CEAE681E1D3EB66400A77AB2 = {
+						CreatedOnToolsVersion = 7.3;
 						TestTargetID = CE2960171987F124008FA93B;
 					};
 				};
@@ -224,7 +220,7 @@
 			projectRoot = "";
 			targets = (
 				CE2960171987F124008FA93B /* QRCodeReaderViewControllerExample */,
-				CE29602D1987F124008FA93B /* QRCodeReaderViewControllerExampleTests */,
+				CEAE681E1D3EB66400A77AB2 /* QRCodeReaderViewControllerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -239,7 +235,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CE29602C1987F124008FA93B /* Resources */ = {
+		CEAE681D1D3EB66400A77AB2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -264,22 +260,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CE29602A1987F124008FA93B /* Sources */ = {
+		CEAE681B1D3EB66400A77AB2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE2960351987F125008FA93B /* QRCodeReaderViewControllerExampleTests.m in Sources */,
-				CE2960431987F140008FA93B /* QRCodeReaderViewController.m in Sources */,
+				CEAE682A1D3EB78300A77AB2 /* QRCodeReaderView.m in Sources */,
+				CEAE682D1D3EB78300A77AB2 /* QRToggleTorchButton.m in Sources */,
+				CEAE68221D3EB66400A77AB2 /* QRCodeReaderTests.m in Sources */,
+				CEAE682C1D3EB78300A77AB2 /* QRCameraSwitchButton.m in Sources */,
+				CEAE682B1D3EB78300A77AB2 /* QRCodeReader.m in Sources */,
+				CEAE68291D3EB78300A77AB2 /* QRCodeReaderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CE2960301987F125008FA93B /* PBXTargetDependency */ = {
+		CEAE68251D3EB66400A77AB2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CE2960171987F124008FA93B /* QRCodeReaderViewControllerExample */;
-			targetProxy = CE29602F1987F125008FA93B /* PBXContainerItemProxy */;
+			targetProxy = CEAE68241D3EB66400A77AB2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -404,39 +404,36 @@
 			};
 			name = Release;
 		};
-		CE29603C1987F125008FA93B /* Debug */ = {
+		CEAE68261D3EB66400A77AB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/QRCodeReaderViewControllerExample.app/QRCodeReaderViewControllerExample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = QRCodeReaderViewControllerExampleTests/Info.plist;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = QRCodeReaderViewControllerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yannickloriot.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yannickloriot.QRCodeReaderViewControllerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QRCodeReaderViewControllerExample.app/QRCodeReaderViewControllerExample";
 			};
 			name = Debug;
 		};
-		CE29603D1987F125008FA93B /* Release */ = {
+		CEAE68271D3EB66400A77AB2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/QRCodeReaderViewControllerExample.app/QRCodeReaderViewControllerExample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = QRCodeReaderViewControllerExampleTests/Info.plist;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = QRCodeReaderViewControllerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yannickloriot.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yannickloriot.QRCodeReaderViewControllerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QRCodeReaderViewControllerExample.app/QRCodeReaderViewControllerExample";
 			};
 			name = Release;
 		};
@@ -461,14 +458,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE29603B1987F125008FA93B /* Build configuration list for PBXNativeTarget "QRCodeReaderViewControllerExampleTests" */ = {
+		CEAE68281D3EB66400A77AB2 /* Build configuration list for PBXNativeTarget "QRCodeReaderViewControllerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CE29603C1987F125008FA93B /* Debug */,
-				CE29603D1987F125008FA93B /* Release */,
+				CEAE68261D3EB66400A77AB2 /* Debug */,
+				CEAE68271D3EB66400A77AB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -51,7 +51,9 @@
       NSLog(@"Completion with result: %@", resultAsString);
     }];
 
-    [self presentViewController:vc animated:YES completion:NULL];
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
+    //[self presentViewController:vc animated:YES completion:NULL];
   }
   else {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Reader not supported by the current device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -64,6 +66,8 @@
 
 - (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
 {
+  [reader stopScanning];
+
   [self dismissViewControllerAnimated:YES completion:^{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"QRCodeReader" message:result delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
