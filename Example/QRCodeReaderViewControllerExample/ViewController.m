@@ -51,9 +51,7 @@
       NSLog(@"Completion with result: %@", resultAsString);
     }];
 
-    [self addChildViewController:vc];
-    [self.view addSubview:vc.view];
-    //[self presentViewController:vc animated:YES completion:NULL];
+    [self presentViewController:vc animated:YES completion:NULL];
   }
   else {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Reader not supported by the current device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
