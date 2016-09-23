@@ -1,5 +1,10 @@
 # Change log
 
+## [Version 4.0.2](https://github.com/yannickl/QRCodeReaderViewController/releases/tag/4.0.2)
+Released on 2016-09-23.
+
+- [FIX] Only sets AVMetadataObjectTypes that are available [#24](https://github.com/yannickl/QRCodeReaderViewController/issues/24)
+
 ## [Version 4.0.1](https://github.com/yannickl/QRCodeReaderViewController/releases/tag/4.0.1)
 Released on 2015-11-07.
 

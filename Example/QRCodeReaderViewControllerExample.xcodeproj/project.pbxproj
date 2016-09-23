@@ -198,7 +198,6 @@
 				TargetAttributes = {
 					CE2960171987F124008FA93B = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 5SJ773RP6R;
 					};
 					CEAE681E1D3EB66400A77AB2 = {
 						CreatedOnToolsVersion = 7.3;
@@ -381,6 +380,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = QRCodeReaderViewControllerExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yannickloriot.${PRODUCT_NAME:rfc1034identifier}";
@@ -396,6 +396,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = QRCodeReaderViewControllerExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yannickloriot.${PRODUCT_NAME:rfc1034identifier}";
@@ -465,6 +466,7 @@
 				CEAE68271D3EB66400A77AB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

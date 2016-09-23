@@ -15,3 +15,4 @@ Please keep the list sorted.
  * [Akira Matsuda](https://github.com/0x0c)
  * [Andrea Mazzini](https://github.com/andreamazz)
  * [Jan](https://github.com/jaltek)
+ * [Nick Brook](https://github.com/nrbrook)
