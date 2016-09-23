@@ -101,7 +101,10 @@
   }
 
   [_metadataOutput setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
-  [_metadataOutput setMetadataObjectTypes:_metadataObjectTypes];
+  NSMutableSet *available = [NSMutableSet setWithArray:[_metadataOutput availableMetadataObjectTypes]];
+  NSSet *desired = [NSSet setWithArray:_metadataObjectTypes];
+  [available intersectSet:desired];
+  [_metadataOutput setMetadataObjectTypes:available.allObjects];
   [_previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
 }
 
