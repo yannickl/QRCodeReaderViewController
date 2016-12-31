@@ -1,6 +1,10 @@
 ![QRCodeReaderViewController](https://github.com/YannickL/QRCodeReaderViewController/blob/master/web/qrcodereaderviewcontroller_header.png)
 
-[![Supported Platforms](https://cocoapod-badges.herokuapp.com/p/QRCodeReaderViewController/badge.svg)](http://cocoadocs.org/docsets/QRCodeReaderViewController/) [![Version](https://cocoapod-badges.herokuapp.com/v/QRCodeReaderViewController/badge.svg)](http://cocoadocs.org/docsets/QRCodeReaderViewController/) [![Build Status](https://travis-ci.org/yannickl/QRCodeReaderViewController.svg?branch=master)](https://travis-ci.org/yannickl/QRCodeReaderViewController)
+<p align="center">
+  <a href="http://cocoadocs.org/docsets/QRCodeReaderViewController/"><img alt="Supported Platforms" src="https://cocoapod-badges.herokuapp.com/p/QRCodeReaderViewController/badge.svg"/></a>
+  <a href="http://cocoadocs.org/docsets/QRCodeReaderViewController/"><img alt="Version" src="https://cocoapod-badges.herokuapp.com/v/QRCodeReaderViewController/badge.svg"/></a>
+  <a href="https://travis-ci.org/yannickl/QRCodeReaderViewController"><img alt="Build status" src="https://travis-ci.org/yannickl/QRCodeReaderViewController.svg?branch=master"/></a>
+</p>
 
 The _QRCodeReaderViewController_ was initially a simple QRCode reader but it now lets you the possibility to specify the [format type](https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMetadataMachineReadableCodeObject_Class/index.html#//apple_ref/doc/constant_group/Machine_Readable_Object_Types) you want to decode. It is based on the `AVFoundation` framework from Apple in order to replace ZXing or ZBar for iOS 7 and over.
 
