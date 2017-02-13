@@ -12,6 +12,10 @@ It provides a default view controller to display the camera view with the scan a
 
 ![screenshot](http://yannickloriot.com/resources/qrcodereader.swift-screenshot.jpg)
 
+<p align="center">
+    <a href="#usage">Usage</a> • <a href="#installation">Installation</a> • <a href="#contact">Contact</a> • <a href="#license-mit">License</a>
+</p>
+
 ## Usage
 
 Note that in iOS10+, you will need first to reasoning about the camera use. For that you'll need to add the **Privacy - Camera Usage Description** *(NSCameraUsageDescription)* field in your Info.plist:
