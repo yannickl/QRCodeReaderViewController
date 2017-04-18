@@ -102,7 +102,7 @@
 
     [_cameraView.layer insertSublayer:_codeReader.previewLayer atIndex:0];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 
     __weak __typeof__(self) weakSelf = self;
 
