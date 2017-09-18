@@ -48,7 +48,7 @@
 - (void)dealloc
 {
   [self stopScanning];
-
+  
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -70,7 +70,7 @@
 - (id)initWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes
 {
   QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:metadataObjectTypes];
-
+  
   return [self initWithCancelButtonTitle:cancelTitle codeReader:reader];
 }
 
@@ -92,25 +92,25 @@
     self.startScanningAtLoad    = startScanningAtLoad;
     self.showSwitchCameraButton = showSwitchCameraButton;
     self.showTorchButton        = showTorchButton;
-
+    
     if (cancelTitle == nil) {
       cancelTitle = NSLocalizedString(@"Cancel", @"Cancel");
     }
-
+    
     [self setupUIComponentsWithCancelButtonTitle:cancelTitle];
     [self setupAutoLayoutConstraints];
-
+    
     [_cameraView.layer insertSublayer:_codeReader.previewLayer atIndex:0];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
-
+    
     __weak __typeof__(self) weakSelf = self;
-
+    
     [codeReader setCompletionWithBlock:^(NSString *resultAsString) {
       if (weakSelf.completionBlock != nil) {
         weakSelf.completionBlock(resultAsString);
       }
-
+      
       if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(reader:didScanResult:)]) {
         [weakSelf.delegate reader:weakSelf didScanResult:resultAsString];
       }
@@ -152,7 +152,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-
+  
   if (_startScanningAtLoad) {
     [self startScanning];
   }
@@ -161,14 +161,14 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
   [self stopScanning];
-
+  
   [super viewWillDisappear:animated];
 }
 
 - (void)viewWillLayoutSubviews
 {
   [super viewWillLayoutSubviews];
-
+  
   _codeReader.previewLayer.frame = self.view.bounds;
 }
 
@@ -192,10 +192,10 @@
 - (void)orientationChanged:(NSNotification *)notification
 {
   [_cameraView setNeedsDisplay];
-
+  
   if (_codeReader.previewLayer.connection.isVideoOrientationSupported) {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-
+    
     _codeReader.previewLayer.connection.videoOrientation = [QRCodeReader videoOrientationFromInterfaceOrientation:
                                                             orientation];
   }
@@ -216,15 +216,15 @@
   _cameraView.translatesAutoresizingMaskIntoConstraints = NO;
   _cameraView.clipsToBounds                             = YES;
   [self.view addSubview:_cameraView];
-
+  
   [_codeReader.previewLayer setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-
+  
   if ([_codeReader.previewLayer.connection isVideoOrientationSupported]) {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-
+    
     _codeReader.previewLayer.connection.videoOrientation = [QRCodeReader videoOrientationFromInterfaceOrientation:orientation];
   }
-
+  
   if (_showSwitchCameraButton && [_codeReader hasFrontDevice]) {
     _switchCameraButton = [[QRCameraSwitchButton alloc] init];
     
@@ -232,15 +232,15 @@
     [_switchCameraButton addTarget:self action:@selector(switchCameraAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_switchCameraButton];
   }
-
+  
   if (_showTorchButton && [_codeReader isTorchAvailable]) {
     _toggleTorchButton = [[QRToggleTorchButton alloc] init];
-
+    
     [_toggleTorchButton setTranslatesAutoresizingMaskIntoConstraints:false];
     [_toggleTorchButton addTarget:self action:@selector(toggleTorchAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_toggleTorchButton];
   }
-
+  
   self.cancelButton                                       = [[UIButton alloc] init];
   _cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
   [_cancelButton setTitle:cancelButtonTitle forState:UIControlStateNormal];
@@ -251,29 +251,33 @@
 
 - (void)setupAutoLayoutConstraints
 {
-  NSDictionary *views = NSDictionaryOfVariableBindings(_cameraView, _cancelButton);
-
+  id bottomLayoutGuide = self.bottomLayoutGuide;
+  NSDictionary *views = NSDictionaryOfVariableBindings(_cameraView, _cancelButton, bottomLayoutGuide);
+  
+  // add bottomLayoutGuide for not overlaying the "home button" of the iphone x
+  NSString *constraintString = [NSString stringWithFormat:@"V:|[_cameraView][_cancelButton(40)]-[bottomLayoutGuide]"];
   [self.view addConstraints:
-   [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_cameraView][_cancelButton(40)]|" options:0 metrics:nil views:views]];
+   [NSLayoutConstraint constraintsWithVisualFormat:constraintString options:0 metrics:nil views:myViews]];
+  
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_cameraView]|" options:0 metrics:nil views:views]];
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_cancelButton]-|" options:0 metrics:nil views:views]];
-
+  
   id topLayoutGuide = self.topLayoutGuide;
   
   if (_switchCameraButton) {
     NSDictionary *switchViews = NSDictionaryOfVariableBindings(_switchCameraButton, topLayoutGuide);
-
+    
     [self.view addConstraints:
      [NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-[_switchCameraButton(50)]" options:0 metrics:nil views:switchViews]];
     [self.view addConstraints:
      [NSLayoutConstraint constraintsWithVisualFormat:@"H:[_switchCameraButton(70)]|" options:0 metrics:nil views:switchViews]];
   }
-
+  
   if (_toggleTorchButton) {
     NSDictionary *torchViews = NSDictionaryOfVariableBindings(_toggleTorchButton, topLayoutGuide);
-
+    
     [self.view addConstraints:
      [NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-[_toggleTorchButton(50)]" options:0 metrics:nil views:torchViews]];
     [self.view addConstraints:
@@ -291,11 +295,11 @@
 - (void)cancelAction:(UIButton *)button
 {
   [_codeReader stopScanning];
-
+  
   if (_completionBlock) {
     _completionBlock(nil);
   }
-
+  
   if (_delegate && [_delegate respondsToSelector:@selector(readerDidCancel:)]) {
     [_delegate readerDidCancel:self];
   }
