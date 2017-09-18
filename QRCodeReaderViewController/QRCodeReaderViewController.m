@@ -257,7 +257,7 @@
   // add bottomLayoutGuide for not overlaying the "home button" of the iphone x
   NSString *constraintString = [NSString stringWithFormat:@"V:|[_cameraView][_cancelButton(40)]-[bottomLayoutGuide]"];
   [self.view addConstraints:
-   [NSLayoutConstraint constraintsWithVisualFormat:constraintString options:0 metrics:nil views:myViews]];
+   [NSLayoutConstraint constraintsWithVisualFormat:constraintString options:0 metrics:nil views:views]];
   
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_cameraView]|" options:0 metrics:nil views:views]];
