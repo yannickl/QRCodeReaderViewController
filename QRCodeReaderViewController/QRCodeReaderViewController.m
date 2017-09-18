@@ -251,11 +251,10 @@
 
 - (void)setupAutoLayoutConstraints
 {
-  NSDictionary *views = NSDictionaryOfVariableBindings(_cameraView, _cancelButton);
+  id bottomLayoutGuide = self.bottomLayoutGuide;
+  NSDictionary *views = NSDictionaryOfVariableBindings(_cameraView, _cancelButton, bottomLayoutGuide);
   
   // add bottomLayoutGuide for not overlaying the "home button" of the iphone x
-  id bottomLayoutGuide = self.bottomLayoutGuide;
-  NSDictionary *myViews = NSDictionaryOfVariableBindings(_cameraView, _cancelButton, bottomLayoutGuide);
   NSString *constraintString = [NSString stringWithFormat:@"V:|[_cameraView][_cancelButton(40)]-[bottomLayoutGuide]"];
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:constraintString options:0 metrics:nil views:myViews]];
