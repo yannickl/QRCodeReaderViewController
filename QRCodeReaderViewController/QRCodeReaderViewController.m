@@ -251,32 +251,48 @@
 
 - (void)setupAutoLayoutConstraints
 {
-  id topLayoutGuide = self.topLayoutGuide;
-  id bottomLayoutGuide = self.bottomLayoutGuide;
+    NSLayoutYAxisAnchor * topLayoutAnchor;
+    NSLayoutYAxisAnchor * bottomLayoutAnchor;
+    NSLayoutXAxisAnchor * leftLayoutAnchor;
+    NSLayoutXAxisAnchor * rightLayoutAnchor;
+    if (@available(iOS 11.0, *)) {
+      topLayoutAnchor = self.view.safeAreaLayoutGuide.topAnchor;
+      bottomLayoutAnchor = self.view.safeAreaLayoutGuide.bottomAnchor;
+      leftLayoutAnchor = self.view.safeAreaLayoutGuide.leftAnchor;
+      rightLayoutAnchor = self.view.safeAreaLayoutGuide.rightAnchor;
+    } else {
+      topLayoutAnchor = self.topLayoutGuide.bottomAnchor;
+      bottomLayoutAnchor = self.bottomLayoutGuide.topAnchor;
+      leftLayoutAnchor = self.view.leftAnchor;
+      rightLayoutAnchor = self.view.rightAnchor;
+    }
     
-  NSMutableDictionary *views = NSDictionaryOfVariableBindings(topLayoutGuide, bottomLayoutGuide, _cameraView, _cancelButton).mutableCopy;
+  NSDictionary *views = NSDictionaryOfVariableBindings(_cameraView, _cancelButton);
 
   [self.view addConstraints:
-   [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_cameraView][_cancelButton(40)][bottomLayoutGuide]" options:0 metrics:nil views:views]];
+   [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_cameraView][_cancelButton(40)]" options:0 metrics:nil views:views]];
+  [[bottomLayoutAnchor constraintEqualToAnchor:_cancelButton.bottomAnchor] setActive:YES];
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_cameraView]|" options:0 metrics:nil views:views]];
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_cancelButton]-|" options:0 metrics:nil views:views]];
   
   if (_switchCameraButton) {
-    [views addEntriesFromDictionary:NSDictionaryOfVariableBindings(_switchCameraButton)];
-    [self.view addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-[_switchCameraButton(50)]" options:0 metrics:nil views:views]];
-    [self.view addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"H:[_switchCameraButton(70)]-|" options:0 metrics:nil views:views]];
+      [NSLayoutConstraint activateConstraints:@[
+          [topLayoutAnchor constraintEqualToAnchor:_switchCameraButton.topAnchor],
+          [rightLayoutAnchor constraintEqualToAnchor:_switchCameraButton.rightAnchor],
+          [_switchCameraButton.heightAnchor constraintEqualToConstant:50],
+          [_switchCameraButton.widthAnchor constraintEqualToConstant:70]
+          ]];
   }
 
   if (_toggleTorchButton) {
-    [views addEntriesFromDictionary:NSDictionaryOfVariableBindings(_toggleTorchButton)];
-    [self.view addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-[_toggleTorchButton(50)]" options:0 metrics:nil views:views]];
-    [self.view addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_toggleTorchButton(70)]" options:0 metrics:nil views:views]];
+      [NSLayoutConstraint activateConstraints:@[
+          [topLayoutAnchor constraintEqualToAnchor:_toggleTorchButton.topAnchor],
+          [leftLayoutAnchor constraintEqualToAnchor:_toggleTorchButton.leftAnchor],
+          [_toggleTorchButton.heightAnchor constraintEqualToConstant:50],
+          [_toggleTorchButton.widthAnchor constraintEqualToConstant:70]
+          ]];
   }
 }
 
