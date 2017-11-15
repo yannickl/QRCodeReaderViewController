@@ -251,33 +251,32 @@
 
 - (void)setupAutoLayoutConstraints
 {
-  NSDictionary *views = NSDictionaryOfVariableBindings(_cameraView, _cancelButton);
+  id topLayoutGuide = self.topLayoutGuide;
+  id bottomLayoutGuide = self.bottomLayoutGuide;
+    
+  NSMutableDictionary *views = NSDictionaryOfVariableBindings(topLayoutGuide, bottomLayoutGuide, _cameraView, _cancelButton).mutableCopy;
 
   [self.view addConstraints:
-   [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_cameraView][_cancelButton(40)]|" options:0 metrics:nil views:views]];
+   [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_cameraView][_cancelButton(40)][bottomLayoutGuide]" options:0 metrics:nil views:views]];
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_cameraView]|" options:0 metrics:nil views:views]];
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_cancelButton]-|" options:0 metrics:nil views:views]];
-
-  id topLayoutGuide = self.topLayoutGuide;
   
   if (_switchCameraButton) {
-    NSDictionary *switchViews = NSDictionaryOfVariableBindings(_switchCameraButton, topLayoutGuide);
-
+    [views addEntriesFromDictionary:NSDictionaryOfVariableBindings(_switchCameraButton)];
     [self.view addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-[_switchCameraButton(50)]" options:0 metrics:nil views:switchViews]];
+     [NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-[_switchCameraButton(50)]" options:0 metrics:nil views:views]];
     [self.view addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"H:[_switchCameraButton(70)]|" options:0 metrics:nil views:switchViews]];
+     [NSLayoutConstraint constraintsWithVisualFormat:@"H:[_switchCameraButton(70)]-|" options:0 metrics:nil views:views]];
   }
 
   if (_toggleTorchButton) {
-    NSDictionary *torchViews = NSDictionaryOfVariableBindings(_toggleTorchButton, topLayoutGuide);
-
+    [views addEntriesFromDictionary:NSDictionaryOfVariableBindings(_toggleTorchButton)];
     [self.view addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-[_toggleTorchButton(50)]" options:0 metrics:nil views:torchViews]];
+     [NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-[_toggleTorchButton(50)]" options:0 metrics:nil views:views]];
     [self.view addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_toggleTorchButton(70)]" options:0 metrics:nil views:torchViews]];
+     [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_toggleTorchButton(70)]" options:0 metrics:nil views:views]];
   }
 }
 
