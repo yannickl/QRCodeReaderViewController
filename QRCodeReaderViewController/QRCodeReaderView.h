@@ -32,5 +32,5 @@
  * @since 2.0.0
  */
 @interface QRCodeReaderView : UIView
-
++(CGRect)scanArea;
 @end
