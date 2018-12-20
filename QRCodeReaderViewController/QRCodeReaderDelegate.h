@@ -24,6 +24,8 @@
  *
  */
 
+#import <Foundation/Foundation.h>
+
 @class QRCodeReaderViewController;
 
 /**
