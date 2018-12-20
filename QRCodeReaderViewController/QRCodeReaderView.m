@@ -26,6 +26,8 @@
 
 #import "QRCodeReaderView.h"
 
+static CGRect scanarea;
+
 @interface QRCodeReaderView ()
 @property (nonatomic, strong) CAShapeLayer *overlay;
 
@@ -38,7 +40,7 @@
   if ((self = [super initWithFrame:frame])) {
     [self addOverlay];
   }
-
+  scanarea = CGRectZero;
   return self;
 }
 
@@ -58,8 +60,14 @@
 
   CGRect offsetRect = CGRectOffset(innerRect, 0, 15);
 
-
+  scanarea = offsetRect;
+    
   _overlay.path = [UIBezierPath bezierPathWithRoundedRect:offsetRect cornerRadius:5].CGPath;
+}
+
++(CGRect)scanArea
+{
+    return scanarea;
 }
 
 #pragma mark - Private Methods

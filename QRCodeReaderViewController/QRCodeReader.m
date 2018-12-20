@@ -25,6 +25,7 @@
  */
 
 #import "QRCodeReader.h"
+#import "QRCodeReaderView.h"
 
 @interface QRCodeReader () <AVCaptureMetadataOutputObjectsDelegate>
 @property (strong, nonatomic) AVCaptureDevice            *defaultDevice;
@@ -248,18 +249,21 @@
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
-  for (AVMetadataObject *current in metadataObjects) {
-    if ([current isKindOfClass:[AVMetadataMachineReadableCodeObject class]]
-        && [_metadataObjectTypes containsObject:current.type]) {
-      NSString *scannedResult = [(AVMetadataMachineReadableCodeObject *)current stringValue];
-
-      if (_completionBlock) {
-        _completionBlock(scannedResult);
-      }
-
-      break;
+    for (AVMetadataObject *current in metadataObjects) {
+        if ([current isKindOfClass:[AVMetadataMachineReadableCodeObject class]] && [_metadataObjectTypes containsObject:current.type]) {
+            NSString *scannedResult = [(AVMetadataMachineReadableCodeObject *)current stringValue];
+            AVMetadataObject* transformed =  [self.previewLayer transformedMetadataObjectForMetadataObject:current];
+            CGRect scanarea = [QRCodeReaderView scanArea];
+            if (CGRectIntersectsRect(scanarea, transformed.bounds))
+            {
+                NSLog(@"/////// Intersect");
+                if (_completionBlock) {
+                    _completionBlock(scannedResult);
+                    break;
+                }
+            }
+        }
     }
-  }
 }
 
 @end
