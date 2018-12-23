@@ -307,6 +307,10 @@
 {
   [_codeReader stopScanning];
 
+    if (self.CancelBlock) {
+        self.CancelBlock();
+    }
+    
   if (_completionBlock) {
     _completionBlock(nil);
   }
